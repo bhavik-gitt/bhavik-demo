@@ -1,10 +1,5 @@
 # bhavik-demo
-style
-{
-body {
-background-color:black;
-}
-}
 This is my first repository
 <br>
 Author  - Bhavik ratnottar
+<h1 style="color:red">Taari maani bhos</h1>
