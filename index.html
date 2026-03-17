@@ -1,82 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Bhavik Portfolio</title>
-</head>
-<body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="#about" class="active">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#certificates">Certificates</a></li>
-            <li><a href="#achievements">Achievements</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-    <div class="hero">
-        <h1>Welcome to My Portfolio</h1>
-    </div>
-    <section id="about" class="section">
-        <h2>About</h2>
-        <p>Information about myself.</p>
-    </section>
-    <section id="skills" class="section">
-        <h2>Skills</h2>
-        <p>Skills description.</p>
-    </section>
-    <section id="projects" class="section">
-        <h2>Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">Project 1</div>
-            <div class="project-card">Project 2</div>
-        </div>
-    </section>
-    <section id="education" class="section">
-        <h2>Education</h2>
-        <p>Education details.</p>
-    </section>
-    <section id="experience" class="section">
-        <h2>Experience</h2>
-        <p>Experience information.</p>
-    </section>
-    <section id="certificates" class="section">
-        <h2>Certificates</h2>
-        <p>Certificates information.</p>
-    </section>
-    <section id="achievements" class="section">
-        <h2>Achievements</h2>
-        <p>Achievements information.</p>
-    </section>
-    <section id="contact" class="section">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:bhavikratnottar071@gmail.com">bhavikratnottar071@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/bhavik-ratnottar-b9307b286/">My LinkedIn Profile</a></p>
-    </section>
-    <script>
-        const toggleDarkMode = () => {
-            const currentTheme = localStorage.getItem('theme');
-            if (currentTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        };
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeToggleButton = document.querySelector('.theme-toggle');
-            themeToggleButton.addEventListener('click', toggleDarkMode);
 
-            // Set the theme on initial load
-            const currentTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', currentTheme);
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bhavik Ratnottar | Portfolio</title>
+  <meta name="description"
+    content="Bhavik Ratnottar — B.Tech IT student & aspiring software developer. Projects, skills, education, experience, certificates." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-logo">BR</div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" data-section="about">About</a></li>
+      <li><a href="#skills" data-section="skills">Skills</a></li>
+      <li><a href="#projects" data-section="projects">Projects</a></li>
+      <li><a href="#education" data-section="education">Education</a></li>
+      <li><a href="#experience" data-section="experience">Experience</a></li>
+      <li><a href="#certificates" data-section="certificates">Certificates</a></li>
+      <li><a href="#achievements" data-section="achievements">Achievements</a></li>
+      <li><a href="#contact" data-section="contact">Contact</a></li>
+    </ul>
+
+    <button class="btn btn-sm theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      🌙
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">Hello, I’m</p>
+      <h1 class="hero-name">Bhavik Ratnottar</h1>
+      <p class="hero-subtitle">B.Tech (Information Technology) • Full Stack Developer • AI & Automation Enthusiast</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">Curious builder who learns fast and ships projects.</p>
+
+      <div class="about-card">
+        <div class="about-text">
+          <p>
+            I am a <strong>B.Tech Information Technology student</strong> with a strong passion for technology and software
+            development.
+            I have experience with multiple programming languages and a solid understanding of various technologies and
+            tools.
+          </p>
+          <p>
+            I’m constantly learning and exploring new areas in tech, aiming to build innovative and efficient solutions.
+            I’m looking forward to opportunities where I can apply my skills, contribute to real-world projects, and grow
+            as a professional.
+          </p>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-number">IT</span>
+            <span class="stat-label">B.Tech</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">AI</span>
+            <span class="stat-label">Automation</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-subtitle">A mix of development, tools, and security/AI exposure.</p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <span class="skill-icon">🌐</span>
+          <h3>HTML / CSS</h3>
+          <p>Responsive, clean layouts</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">⚡</span>
+          <h3>JavaScript</h3>
+          <p>DOM, interactions, basics of web apps</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🧩</span>
+          <h3>Full Stack</h3>
+          <p>Building end-to-end projects (learning & improving)</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🐙</span>
+          <h3>Git & GitHub</h3>
+          <p>Version control, clean workflows</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🔐</span>
+          <h3>Cybersecurity Basics</h3>
+          <p>Log analysis, suspicious behavior identification</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon">🤖</span>
+          <h3>AI / Automation</h3>
+          <p>AI agents & automation workshops</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">Selected work (more coming soon).</p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🚀</span>
+            <span class="project-tag">Portfolio</span>
+          </div>
+          <h3>Personal Portfolio Website</h3>
+          <p>Modern responsive portfolio with sections for education, experience, and certificates.</p>
+          <div class="project-links">
+            <a class="btn btn-sm" href="https://github.com/bhavik-gitt/bhavik-demo" target="_blank" rel="noreferrer">View
+              on GitHub</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🧠</span>
+            <span class="project-tag">AI/ML + NLP</span>
+          </div>
+          <h3>AI Internship Recommendation Engine (Hackathon)</h3>
+          <p>
+            Mobile-first, multilingual, voice-enabled internship recommendations using AI/ML + NLP.
+            Includes tracking and notifications via SMS/WhatsApp.
+          </p>
+          <div class="project-links">
+            <span class="project-tag">SIH 2025 Ecosystem</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <p class="section-subtitle">My academic journey.</p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🎓</span>
+            <span class="project-tag">B.Tech IT</span>
+          </div>
+          <h3>Parul University</h3>
+          <p>Bachelor of Technology — Information Technology<br />Jul 2024 – Jul 2027</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🎓</span>
+            <span class="project-tag">Diploma</span>
+          </div>
+          <h3>Ganpat University</h3>
+          <p>Diploma — Information Technology<br />Jul 2021 – Jun 2024 • <strong>8.84 CGPA</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-subtitle">Internships and hands-on learning.</p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">💼</span>
+            <span class="project-tag">Internship</span>
+          </div>
+          <h3>Full Stack Developer — CodeAlpha</h3>
+          <p>Dec 2025 – Jan 2026 • Remote (Lucknow, Uttar Pradesh, India)</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">💼</span>
+            <span class="project-tag">Internship</span>
+          </div>
+          <h3>Generative AI Intern — Prodigy InfoTech</h3>
+          <p>May 2025 – Jun 2025 • Remote</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates -->
+  <section id="certificates" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Certificates & Workshops</h2>
+      <p class="section-subtitle">Hands-on programs, simulations, and workshops.</p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">📜</span>
+            <span class="project-tag">Workshop</span>
+          </div>
+          <h3>Build Smarter, Scalable AI Agents with UiPath</h3>
+          <p>GeeksforGeeks × UiPath — AI-driven automation, scalable agent design, real-world use cases.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🛡️</span>
+            <span class="project-tag">Forage</span>
+          </div>
+          <h3>Deloitte Australia — Cyber Job Simulation</h3>
+          <p>Analyzed web activity logs and identified suspicious behavior in a simulated incident response workflow.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🛡️</span>
+            <span class="project-tag">Forage</span>
+          </div>
+          <h3>Tata — Cybersecurity Analyst Job Simulation</h3>
+          <p>IAM fundamentals, IAM strategy assessment, crafting solutions, and integration exposure.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🐙</span>
+            <span class="project-tag">Skill Up</span>
+          </div>
+          <h3>Git – Skill Up (Nation Skill Up Program)</h3>
+          <p>GeeksforGeeks — version control, clean workflows, and collaboration.</p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🤖</span>
+            <span class="project-tag">Workshop</span>
+          </div>
+          <h3>AI Agentforce Workshop</h3>
+          <p>GeeksforGeeks × Salesforce — AI agents, Agentforce, automation & customer experiences.</p>
+          <div class="project-links">
+            <a class="btn btn-sm" href="https://lnkd.in/dpXxYUbX" target="_blank" rel="noreferrer">Certificate</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🎨</span>
+            <span class="project-tag">Course</span>
+          </div>
+          <h3>Website UI/UX Designing using ChatGPT</h3>
+          <p>Completed on 13 May 2025 • Certificate Code: <strong>8340285</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements" class="section">
+    <div class="container">
+      <h2 class="section-title">Achievements</h2>
+      <p class="section-subtitle">Hackathons and growth milestones.</p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🏆</span>
+            <span class="project-tag">Hackathon</span>
+          </div>
+          <h3>Vadodara Hackathon 6.0 (SIH 2025 Ecosystem)</h3>
+          <p>
+            Built a Smart Education solution: AI-based Internship Recommendation Engine using AI/ML + NLP.
+            Focused on mobile-first, multilingual and voice-enabled design for accessibility.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🌐</span>
+            <span class="project-tag">Web3</span>
+          </div>
+          <h3>HackCampus Polkadot BootCamp</h3>
+          <p>Parul University • Powered by PU DAO & HackTour India — learned and built in the Web3 ecosystem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">Let’s connect for internships, collaborations, and projects.</p>
+
+      <div class="contact-cards">
+        <a href="mailto:bhavikratnottar071@gmail.com" class="contact-card">
+          <span class="contact-icon">✉️</span>
+          <h3>Email</h3>
+          <p>bhavikratnottar071@gmail.com</p>
+        </a>
+
+        <a href="https://www.linkedin.com/in/bhavik-ratnottar-b9307b286/" target="_blank" rel="noreferrer"
+          class="contact-card">
+          <span class="contact-icon">💼</span>
+          <h3>LinkedIn</h3>
+          <p>View Profile</p>
+        </a>
+
+        <a href="https://github.com/bhavik-gitt" target="_blank" rel="noreferrer" class="contact-card">
+          <span class="contact-icon">🐙</span>
+          <h3>GitHub</h3>
+          <p>bhavik-gitt</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Made with ❤️ by <strong>Bhavik Ratnottar</strong> &copy; 2026</p>
+  </footer>
+
+  <script>
+    const THEME_KEY = "theme";
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      const btn = document.querySelector(".theme-toggle");
+      if (btn) btn.textContent = theme === "dark" ? "☀️" : "🌙";
+    }
+
+    function getSystemTheme() {
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const saved = localStorage.getItem(THEME_KEY);
+      applyTheme(saved || getSystemTheme());
+
+      const btn = document.querySelector(".theme-toggle");
+      if (btn) {
+        btn.addEventListener("click", () => {
+          const current = document.documentElement.getAttribute("data-theme") || "light";
+          const next = current === "dark" ? "light" : "dark";
+          localStorage.setItem(THEME_KEY, next);
+          applyTheme(next);
         });
-    </script>
+      }
+
+      // Active nav link on scroll
+      const links = Array.from(document.querySelectorAll(".nav-links a[data-section]"));
+      const sections = links.map(l => document.getElementById(l.dataset.section)).filter(Boolean);
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          links.forEach(a => a.classList.remove("active"));
+          const active = links.find(a => a.dataset.section === entry.target.id);
+          if (active) active.classList.add("active");
+        });
+      }, { rootMargin: "-45% 0px -45% 0px", threshold: 0.01 });
+
+      sections.forEach(sec => observer.observe(sec));
+    });
+  </script>
 </body>
 </html>
