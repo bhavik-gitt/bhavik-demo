@@ -1,49 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Bhavik Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to Bhavik's Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="mailto:bhavikratnottar071@gmail.com">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>Projects</h2>
-            <p>Details about projects...</p>
-        </section>
-        <section>
-            <h2>Education</h2>
-            <p>Education details...</p>
-        </section>
-        <section>
-            <h2>Experience</h2>
-            <p>Experience details...</p>
-        </section>
-        <section>
-            <h2>Certificates</h2>
-            <p>Certificates details...</p>
-        </section>
-        <section>
-            <h2>Achievements</h2>
-            <p>Achievements details...</p>
-        </section>
-        <section>
-            <h2>Contact</h2>
-            <p>For inquiries, please email <a href="mailto:bhavikratnottar071@gmail.com">bhavikratnottar071@gmail.com</a>.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Bhavik Ratnottar</p>
-    </footer>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#about" class="active">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <h1>Welcome to My Portfolio</h1>
+    </div>
+    <section id="about" class="section">
+        <h2>About</h2>
+        <p>Information about myself.</p>
+    </section>
+    <section id="skills" class="section">
+        <h2>Skills</h2>
+        <p>Skills description.</p>
+    </section>
+    <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">Project 1</div>
+            <div class="project-card">Project 2</div>
+        </div>
+    </section>
+    <section id="education" class="section">
+        <h2>Education</h2>
+        <p>Education details.</p>
+    </section>
+    <section id="experience" class="section">
+        <h2>Experience</h2>
+        <p>Experience information.</p>
+    </section>
+    <section id="certificates" class="section">
+        <h2>Certificates</h2>
+        <p>Certificates information.</p>
+    </section>
+    <section id="achievements" class="section">
+        <h2>Achievements</h2>
+        <p>Achievements information.</p>
+    </section>
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:bhavikratnottar071@gmail.com">bhavikratnottar071@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/bhavik-ratnottar-b9307b286/">My LinkedIn Profile</a></p>
+    </section>
+    <script>
+        const toggleDarkMode = () => {
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        };
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.querySelector('.theme-toggle');
+            themeToggleButton.addEventListener('click', toggleDarkMode);
+
+            // Set the theme on initial load
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+        });
+    </script>
 </body>
 </html>
