@@ -409,10 +409,12 @@
   <script>
     const THEME_KEY = "theme";
 
+    // Cached reference to the theme-toggle button, set once on DOMContentLoaded
+    let themeBtn = null;
+
     function applyTheme(theme) {
       document.documentElement.setAttribute("data-theme", theme);
-      const btn = document.querySelector(".theme-toggle");
-      if (btn) btn.textContent = theme === "dark" ? "☀️" : "🌙";
+      if (themeBtn) themeBtn.textContent = theme === "dark" ? "☀️" : "🌙";
     }
 
     function getSystemTheme() {
@@ -420,12 +422,14 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+      // Cache the button once instead of querying the DOM on every theme change
+      themeBtn = document.querySelector(".theme-toggle");
+
       const saved = localStorage.getItem(THEME_KEY);
       applyTheme(saved || getSystemTheme());
 
-      const btn = document.querySelector(".theme-toggle");
-      if (btn) {
-        btn.addEventListener("click", () => {
+      if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
           const current = document.documentElement.getAttribute("data-theme") || "light";
           const next = current === "dark" ? "light" : "dark";
           localStorage.setItem(THEME_KEY, next);
@@ -438,12 +442,18 @@
       const sections = links.map(l => document.getElementById(l.dataset.section)).filter(Boolean);
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          links.forEach(a => a.classList.remove("active"));
-          const active = links.find(a => a.dataset.section === entry.target.id);
-          if (active) active.classList.add("active");
-        });
+        // When multiple entries fire simultaneously (e.g. during fast scrolling),
+        // pick the section whose top edge is closest to the viewport centre so the
+        // correct nav link is highlighted regardless of callback array order.
+        const intersecting = entries.filter(e => e.isIntersecting);
+        if (!intersecting.length) return;
+        const viewportMid = window.innerHeight / 2;
+        const best = intersecting.reduce((a, b) =>
+          Math.abs(a.boundingClientRect.top - viewportMid) <= Math.abs(b.boundingClientRect.top - viewportMid) ? a : b
+        );
+        links.forEach(a => a.classList.remove("active"));
+        const active = links.find(a => a.dataset.section === best.target.id);
+        if (active) active.classList.add("active");
       }, { rootMargin: "-45% 0px -45% 0px", threshold: 0.01 });
 
       sections.forEach(sec => observer.observe(sec));
