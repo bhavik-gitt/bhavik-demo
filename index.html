@@ -15,9 +15,33 @@
 </head>
 
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-logo">BR</div>
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo" aria-label="Home">
+      <svg class="nav-logo-hex" width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M18 2L32.5 10.25V26.75L18 35L3.5 26.75V10.25L18 2Z" fill="url(#hexFill)" opacity="0.18"/>
+        <path d="M18 2L32.5 10.25V26.75L18 35L3.5 26.75V10.25L18 2Z" stroke="url(#hexStroke)" stroke-width="1.5"/>
+        <text x="18" y="23" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="900" font-size="10" fill="url(#hexText)">BR</text>
+        <defs>
+          <linearGradient id="hexFill" x1="3.5" y1="2" x2="32.5" y2="35" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#6c63ff"/>
+            <stop offset="100%" stop-color="#ff6584"/>
+          </linearGradient>
+          <linearGradient id="hexStroke" x1="3.5" y1="2" x2="32.5" y2="35" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#6c63ff"/>
+            <stop offset="100%" stop-color="#ff6584"/>
+          </linearGradient>
+          <linearGradient id="hexText" x1="12" y1="14" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#6c63ff"/>
+            <stop offset="100%" stop-color="#ff6584"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="nav-logo-name">Bhavik<span class="nav-logo-accent">.</span></span>
+    </a>
 
     <ul class="nav-links" id="navLinks">
       <li><a href="#about" data-section="about">About</a></li>
@@ -31,10 +55,18 @@
       <li><a href="#contact" data-section="contact">Contact</a></li>
     </ul>
 
-    <button class="btn btn-sm theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-      🌙
-    </button>
+    <div class="nav-actions">
+      <button class="btn btn-sm theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        🌙
+      </button>
+      <button class="hamburger" id="hamburger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </nav>
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
   <!-- Hero -->
   <section class="hero">
@@ -49,7 +81,7 @@
 
     <div class="hero-content">
       <div class="hero-badge">&#10024; Open to Internships &amp; Collaborations</div>
-      <p class="hero-greeting">Hello, I’m</p>
+      <p class="hero-greeting">Hello, I’m<span class="typing-cursor" aria-hidden="true"></span></p>
       <h1 class="hero-name">Bhavik Ratnottar</h1>
       <p class="hero-subtitle">B.Tech (Information Technology) • Full Stack Developer • AI &amp; Automation Enthusiast</p>
       <div class="hero-buttons">
@@ -102,38 +134,201 @@
   <section id="skills" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Skills</h2>
-      <p class="section-subtitle">A mix of development, tools, and security/AI exposure.</p>
+      <p class="section-subtitle">Frontend, backend, languages, frameworks, and tools I work with.</p>
 
-      <div class="skills-grid">
-        <div class="skill-card">
-          <span class="skill-icon">🌐</span>
-          <h3>HTML / CSS</h3>
-          <p>Responsive, clean layouts</p>
+      <!-- Frontend Languages & Frameworks -->
+      <div class="skills-category-group" data-category="frontend">
+        <div class="skills-category-header">
+          <span class="skills-cat-icon">🎨</span>
+          <h3>Frontend Languages &amp; Frameworks</h3>
         </div>
-        <div class="skill-card">
-          <span class="skill-icon">⚡</span>
-          <h3>JavaScript</h3>
-          <p>DOM, interactions, basics of web apps</p>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <span class="skill-icon">🌐</span>
+            <h3>HTML5</h3>
+            <p>Semantic markup, accessibility, SEO best practices</p>
+            <span class="skill-level advanced">Advanced</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🎨</span>
+            <h3>CSS3</h3>
+            <p>Flexbox, Grid, animations, responsive design</p>
+            <span class="skill-level advanced">Advanced</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">⚡</span>
+            <h3>JavaScript ES6+</h3>
+            <p>DOM manipulation, async/await, modules, APIs</p>
+            <span class="skill-level advanced">Advanced</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🔷</span>
+            <h3>TypeScript</h3>
+            <p>Static typing, interfaces, generics, decorators</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">⚛️</span>
+            <h3>React.js</h3>
+            <p>Hooks, context, React Router, state management</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🅰️</span>
+            <h3>Angular</h3>
+            <p>Components, services, routing, RxJS observables</p>
+            <span class="skill-level learning">Learning</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🎯</span>
+            <h3>Bootstrap</h3>
+            <p>Responsive grid, components, utility classes</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">💨</span>
+            <h3>Tailwind CSS</h3>
+            <p>Utility-first CSS, rapid prototyping, custom themes</p>
+            <span class="skill-level beginner">Beginner</span>
+          </div>
         </div>
-        <div class="skill-card">
-          <span class="skill-icon">🧩</span>
-          <h3>Full Stack</h3>
-          <p>Building end-to-end projects (learning & improving)</p>
+      </div>
+
+      <!-- Backend Languages & Frameworks -->
+      <div class="skills-category-group" data-category="backend">
+        <div class="skills-category-header">
+          <span class="skills-cat-icon">⚙️</span>
+          <h3>Backend Languages &amp; Frameworks</h3>
         </div>
-        <div class="skill-card">
-          <span class="skill-icon">🐙</span>
-          <h3>Git & GitHub</h3>
-          <p>Version control, clean workflows</p>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <span class="skill-icon">🟢</span>
+            <h3>Node.js</h3>
+            <p>Server-side JS, npm, file system, event loop</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🚂</span>
+            <h3>Express.js</h3>
+            <p>RESTful APIs, middleware, routing, authentication</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🐍</span>
+            <h3>Python</h3>
+            <p>Scripting, data processing, AI/ML integration</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🍃</span>
+            <h3>MongoDB</h3>
+            <p>NoSQL documents, aggregation, Mongoose ODM</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🗄️</span>
+            <h3>MySQL</h3>
+            <p>Relational DB, queries, joins, CRUD operations</p>
+            <span class="skill-level beginner">Beginner</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🔗</span>
+            <h3>REST APIs</h3>
+            <p>API design, HTTP methods, JWT authentication</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
         </div>
-        <div class="skill-card">
-          <span class="skill-icon">🔐</span>
-          <h3>Cybersecurity Basics</h3>
-          <p>Log analysis, suspicious behavior identification</p>
+      </div>
+
+      <!-- Programming Language Knowledge -->
+      <div class="skills-category-group" data-category="languages">
+        <div class="skills-category-header">
+          <span class="skills-cat-icon">💻</span>
+          <h3>Programming Language Knowledge</h3>
         </div>
-        <div class="skill-card">
-          <span class="skill-icon">🤖</span>
-          <h3>AI / Automation</h3>
-          <p>AI agents & automation workshops</p>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <span class="skill-icon">⚡</span>
+            <h3>JavaScript</h3>
+            <p>ES6+, async programming, functional patterns</p>
+            <span class="skill-level advanced">Advanced</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🔷</span>
+            <h3>TypeScript</h3>
+            <p>Static typing, interfaces, compiler options</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🐍</span>
+            <h3>Python</h3>
+            <p>OOP, libraries, scripting, automation</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🔵</span>
+            <h3>C</h3>
+            <p>Pointers, memory management, data structures</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🔷</span>
+            <h3>C++</h3>
+            <p>OOP, STL, algorithms, competitive programming</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">☕</span>
+            <h3>Java</h3>
+            <p>OOP fundamentals, collections, basics</p>
+            <span class="skill-level beginner">Beginner</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools & Other Skills -->
+      <div class="skills-category-group" data-category="tools">
+        <div class="skills-category-header">
+          <span class="skills-cat-icon">🔧</span>
+          <h3>Tools &amp; Other Skills</h3>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <span class="skill-icon">🐙</span>
+            <h3>Git &amp; GitHub</h3>
+            <p>Version control, branching, pull requests, CI/CD</p>
+            <span class="skill-level advanced">Advanced</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">💻</span>
+            <h3>VS Code</h3>
+            <p>Extensions, debugging, workspace configuration</p>
+            <span class="skill-level advanced">Advanced</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">📮</span>
+            <h3>Postman</h3>
+            <p>API testing, collections, environments</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🤖</span>
+            <h3>AI / Automation</h3>
+            <p>AI agents, Gemini API, UiPath, automation workflows</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🔐</span>
+            <h3>Cybersecurity</h3>
+            <p>Log analysis, IAM, incident response basics</p>
+            <span class="skill-level beginner">Beginner</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🧩</span>
+            <h3>Full Stack Dev</h3>
+            <p>End-to-end MERN stack project development</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
         </div>
       </div>
     </div>
@@ -536,6 +731,56 @@
         });
       }
 
+      // ── Hamburger menu ────────────────────────────────────────────────────
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      const navOverlay = document.getElementById("navOverlay");
+
+      function openNav() {
+        navLinks.classList.add("nav-open");
+        hamburger.classList.add("is-open");
+        navOverlay.classList.add("visible");
+        hamburger.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeNav() {
+        navLinks.classList.remove("nav-open");
+        hamburger.classList.remove("is-open");
+        navOverlay.classList.remove("visible");
+        hamburger.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      if (hamburger) {
+        hamburger.addEventListener("click", () => {
+          navLinks.classList.contains("nav-open") ? closeNav() : openNav();
+        });
+      }
+
+      if (navOverlay) {
+        navOverlay.addEventListener("click", closeNav);
+      }
+
+      // Close mobile nav when any nav link is clicked
+      if (navLinks) {
+        navLinks.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", closeNav);
+        });
+      }
+
+      // ── Scroll progress bar & navbar shrink ──────────────────────────────
+      const scrollProgressEl = document.getElementById("scrollProgress");
+      const navbar = document.getElementById("navbar");
+
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        if (scrollProgressEl) scrollProgressEl.style.width = pct + "%";
+        if (navbar) navbar.classList.toggle("navbar-scrolled", scrollTop > 60);
+      }, { passive: true });
+
       // Active nav link on scroll
       const links = Array.from(document.querySelectorAll(".nav-links a[data-section]"));
       const sections = links.map(l => document.getElementById(l.dataset.section)).filter(Boolean);
@@ -562,7 +807,7 @@
       // then reveal them with a staggered transition as they enter the viewport.
       const revealSelectors = [
         '.skill-card', '.project-card', '.contact-card',
-        '.about-card', '.stat'
+        '.about-card', '.stat', '.skills-category-header'
       ];
       document.querySelectorAll(revealSelectors.join(', ')).forEach(el => {
         const siblings = Array.from(el.parentElement.children);
