@@ -833,7 +833,7 @@ a {
 }
 
 .skills-category-group .skill-card:hover {
-    border-color: color-mix(in srgb, var(--cat-color, var(--primary)) 40%, transparent);
+    border-color: rgba(108, 99, 255, 0.35);
 }
 
 .skills-category-header {
