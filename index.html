@@ -7,6 +7,10 @@
   <title>Bhavik Ratnottar | Portfolio</title>
   <meta name="description"
     content="Bhavik Ratnottar — B.Tech IT student & aspiring software developer. Projects, skills, education, experience, certificates." />
+  <!-- Google Fonts: Poppins (headings) · Space Grotesk (body) · JetBrains Mono (code accent) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -34,10 +38,20 @@
 
   <!-- Hero -->
   <section class="hero">
+    <!-- Animated floating colour blobs -->
+    <div class="hero-shapes" aria-hidden="true">
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="hero-shape hero-shape-2"></div>
+      <div class="hero-shape hero-shape-3"></div>
+      <div class="hero-shape hero-shape-4"></div>
+      <div class="hero-shape hero-shape-5"></div>
+    </div>
+
     <div class="hero-content">
+      <div class="hero-badge">&#10024; Open to Internships &amp; Collaborations</div>
       <p class="hero-greeting">Hello, I’m</p>
       <h1 class="hero-name">Bhavik Ratnottar</h1>
-      <p class="hero-subtitle">B.Tech (Information Technology) • Full Stack Developer • AI & Automation Enthusiast</p>
+      <p class="hero-subtitle">B.Tech (Information Technology) • Full Stack Developer • AI &amp; Automation Enthusiast</p>
       <div class="hero-buttons">
         <a href="#projects" class="btn btn-primary">View Projects</a>
         <a href="#contact" class="btn btn-outline">Get In Touch</a>
@@ -457,6 +471,42 @@
       }, { rootMargin: "-45% 0px -45% 0px", threshold: 0.01 });
 
       sections.forEach(sec => observer.observe(sec));
+
+      // ── Scroll-reveal animations ──────────────────────────────────────────
+      // Attach data-animate to all cards so CSS hides them initially,
+      // then reveal them with a staggered transition as they enter the viewport.
+      const revealSelectors = [
+        '.skill-card', '.project-card', '.contact-card',
+        '.about-card', '.stat'
+      ];
+      document.querySelectorAll(revealSelectors.join(', ')).forEach(el => {
+        const siblings = Array.from(el.parentElement.children);
+        const idx = siblings.indexOf(el);
+        el.setAttribute('data-animate', '');
+        // Store stagger delay so we can apply it only during the reveal
+        el.dataset.revealDelay = String(idx * 70); // ms
+      });
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const delay = parseInt(el.dataset.revealDelay || '0', 10);
+          // CSS transition duration is 0.6s (600 ms); add a small buffer so the
+          // inline override is cleared only after the animation fully completes.
+          const REVEAL_DURATION = 600;
+          // Apply stagger transition, then clear it so hover is instant
+          el.style.transition =
+            `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`;
+          el.classList.add('visible');
+          setTimeout(() => { el.style.transition = ''; }, REVEAL_DURATION + 100 + delay);
+          revealObserver.unobserve(el);
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+      document.querySelectorAll('[data-animate]').forEach(el =>
+        revealObserver.observe(el)
+      );
     });
   </script>
 </body>
