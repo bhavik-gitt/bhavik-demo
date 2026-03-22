@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8" />
@@ -21,44 +21,47 @@
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <a href="#" class="nav-logo" aria-label="Home">
-      <svg class="nav-logo-hex" width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M18 2L32.5 10.25V26.75L18 35L3.5 26.75V10.25L18 2Z" fill="url(#hexFill)" opacity="0.18"/>
-        <path d="M18 2L32.5 10.25V26.75L18 35L3.5 26.75V10.25L18 2Z" stroke="url(#hexStroke)" stroke-width="1.5"/>
-        <text x="18" y="23" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="900" font-size="10" fill="url(#hexText)">BR</text>
-        <defs>
-          <linearGradient id="hexFill" x1="3.5" y1="2" x2="32.5" y2="35" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#6c63ff"/>
-            <stop offset="100%" stop-color="#ff6584"/>
-          </linearGradient>
-          <linearGradient id="hexStroke" x1="3.5" y1="2" x2="32.5" y2="35" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#6c63ff"/>
-            <stop offset="100%" stop-color="#ff6584"/>
-          </linearGradient>
-          <linearGradient id="hexText" x1="12" y1="14" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#6c63ff"/>
-            <stop offset="100%" stop-color="#ff6584"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <span class="nav-logo-name">Bhavik<span class="nav-logo-accent">.</span></span>
+      <div class="nav-logo-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M18 2L32.5 10.25V26.75L18 35L3.5 26.75V10.25L18 2Z" fill="url(#hexFill2)" opacity="0.22"/>
+          <path d="M18 2L32.5 10.25V26.75L18 35L3.5 26.75V10.25L18 2Z" stroke="url(#hexStroke2)" stroke-width="1.6"/>
+          <text x="18" y="23" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="900" font-size="10" fill="url(#hexText2)">BR</text>
+          <defs>
+            <linearGradient id="hexFill2" x1="3.5" y1="2" x2="32.5" y2="35" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#a855f7"/>
+            </linearGradient>
+            <linearGradient id="hexStroke2" x1="3.5" y1="2" x2="32.5" y2="35" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#a855f7"/>
+            </linearGradient>
+            <linearGradient id="hexText2" x1="12" y1="14" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#c4b5fd"/><stop offset="100%" stop-color="#a855f7"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Bhavik<span class="nav-logo-accent">.</span></span>
+        <span class="nav-logo-status"><span class="nav-status-dot"></span>Available</span>
+      </div>
     </a>
 
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about" data-section="about">About</a></li>
-      <li><a href="#skills" data-section="skills">Skills</a></li>
-      <li><a href="#projects" data-section="projects">Projects</a></li>
-      <li><a href="#education" data-section="education">Education</a></li>
-      <li><a href="#experience" data-section="experience">Experience</a></li>
-      <li><a href="#certificates" data-section="certificates">Certificates</a></li>
-      <li><a href="#achievements" data-section="achievements">Achievements</a></li>
-      <li><a href="#resources" data-section="resources">Resources</a></li>
-      <li><a href="#contact" data-section="contact">Contact</a></li>
+      <li><a href="#about" data-section="about"><span class="nav-link-icon">👤</span>About</a></li>
+      <li><a href="#skills" data-section="skills"><span class="nav-link-icon">⚡</span>Skills</a></li>
+      <li><a href="#projects" data-section="projects"><span class="nav-link-icon">🚀</span>Projects</a></li>
+      <li><a href="#education" data-section="education"><span class="nav-link-icon">🎓</span>Education</a></li>
+      <li><a href="#experience" data-section="experience"><span class="nav-link-icon">💼</span>Experience</a></li>
+      <li><a href="#certificates" data-section="certificates"><span class="nav-link-icon">📜</span>Certificates</a></li>
+      <li><a href="#achievements" data-section="achievements"><span class="nav-link-icon">🏆</span>Achievements</a></li>
+      <li><a href="#resources" data-section="resources"><span class="nav-link-icon">📚</span>Resources</a></li>
+      <li><a href="#contact" data-section="contact"><span class="nav-link-icon">✉️</span>Contact</a></li>
     </ul>
 
     <div class="nav-actions">
-      <button class="btn btn-sm theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-        🌙
-      </button>
+      <a href="#contact" class="nav-hire-btn">
+        <span class="nav-hire-pulse"></span>
+        Hire Me
+      </a>
       <button class="hamburger" id="hamburger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
         <span></span>
         <span></span>
@@ -70,6 +73,9 @@
 
   <!-- Hero -->
   <section class="hero">
+    <!-- Starfield canvas background -->
+    <canvas class="hero-stars" id="heroStars" aria-hidden="true"></canvas>
+
     <!-- Animated floating colour blobs -->
     <div class="hero-shapes" aria-hidden="true">
       <div class="hero-shape hero-shape-1"></div>
@@ -80,14 +86,46 @@
     </div>
 
     <div class="hero-content">
-      <div class="hero-badge">&#10024; Open to Internships &amp; Collaborations</div>
-      <p class="hero-greeting">Hello, I’m<span class="typing-cursor" aria-hidden="true"></span></p>
-      <h1 class="hero-name">Bhavik Ratnottar</h1>
-      <p class="hero-subtitle">B.Tech (Information Technology) • Full Stack Developer • AI &amp; Automation Enthusiast</p>
-      <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      <div class="hero-text">
+        <div class="hero-badge" data-animate-hero="badge">&#10024; Open to Internships &amp; Collaborations</div>
+        <p class="hero-greeting" data-animate-hero="greeting">Hello, I'm</p>
+        <h1 class="hero-name" data-animate-hero="name">
+          <span id="heroNameWrap">Bhavik Ratnottar</span>
+        </h1>
+        <p class="hero-role-line" data-animate-hero="role">
+          I'm a <span id="hero-role" class="hero-role-text"></span><span class="typing-cursor role-cursor" aria-hidden="true"></span>
+        </p>
+        <p class="hero-subtitle" data-animate-hero="subtitle">B.Tech (IT) &bull; Full Stack Developer &bull; AI &amp; Automation Enthusiast</p>
+        <div class="hero-buttons" data-animate-hero="buttons">
+          <a href="#projects" class="btn btn-primary">
+            <span>View Projects</span>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-outline">Get In Touch</a>
+          <a href="https://github.com/bhavik-gitt" target="_blank" rel="noreferrer" class="btn btn-ghost" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
       </div>
+
+      <div class="hero-photo-wrap" data-animate-hero="photo">
+        <div class="hero-photo-ring">
+          <div class="hero-photo-inner">
+            <img src="https://github.com/user-attachments/assets/a450d8e6-ff05-4be7-bed2-e74cd9a3d264"
+                 class="hero-photo" alt="Bhavik Ratnottar" loading="eager" />
+          </div>
+        </div>
+        <div class="hero-photo-orb hero-photo-orb-1"></div>
+        <div class="hero-photo-orb hero-photo-orb-2"></div>
+        <div class="hero-photo-badge">
+          <span>&#128187;</span> Full Stack Dev
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
     </div>
   </section>
 
@@ -98,6 +136,16 @@
       <p class="section-subtitle">Curious builder who learns fast and ships projects.</p>
 
       <div class="about-card">
+        <div class="about-photo-col">
+          <div class="about-photo-wrap">
+            <img src="https://github.com/user-attachments/assets/a450d8e6-ff05-4be7-bed2-e74cd9a3d264"
+                 class="about-photo-img" alt="Bhavik Ratnottar" loading="lazy" />
+            <div class="about-photo-ring-deco"></div>
+          </div>
+          <div class="about-name-tag">Bhavik Ratnottar</div>
+          <div class="about-role-tag">Full Stack Developer</div>
+        </div>
+
         <div class="about-text">
           <p>
             I am a <strong>B.Tech Information Technology student</strong> with a strong passion for technology and software
@@ -106,8 +154,8 @@
             tools.
           </p>
           <p>
-            I’m constantly learning and exploring new areas in tech, aiming to build innovative and efficient solutions.
-            I’m looking forward to opportunities where I can apply my skills, contribute to real-world projects, and grow
+            I'm constantly learning and exploring new areas in tech, aiming to build innovative and efficient solutions.
+            I'm looking forward to opportunities where I can apply my skills, contribute to real-world projects, and grow
             as a professional.
           </p>
         </div>
@@ -122,7 +170,7 @@
             <span class="stat-label">Automation</span>
           </div>
           <div class="stat">
-            <span class="stat-number">∞</span>
+            <span class="stat-number">&#8734;</span>
             <span class="stat-label">Learning</span>
           </div>
         </div>
@@ -701,39 +749,145 @@
   </footer>
 
   <script>
-    const THEME_KEY = "theme";
+    /* ============================================================
+       Dark mode — always dark, no toggle
+       ============================================================ */
+    document.documentElement.setAttribute("data-theme", "dark");
 
-    // Cached reference to the theme-toggle button, set once on DOMContentLoaded
-    let themeBtn = null;
+    /* ============================================================
+       Role typing animation
+       ============================================================ */
+    const ROLES = [
+      "Developer",
+      "Coder",
+      "Solution Builder",
+      "AI Enthusiast",
+      "Full Stack Dev",
+      "Problem Solver",
+      "Tech Innovator"
+    ];
+    let roleIdx = 0, charIdx = 0, deleting = false;
+    const roleEl = document.getElementById("hero-role");
 
-    function applyTheme(theme) {
-      document.documentElement.setAttribute("data-theme", theme);
-      if (themeBtn) themeBtn.textContent = theme === "dark" ? "☀️" : "🌙";
+    function typeRole() {
+      if (!roleEl) return;
+      const word = ROLES[roleIdx];
+      if (deleting) {
+        charIdx--;
+        roleEl.textContent = word.substring(0, charIdx);
+        if (charIdx <= 0) {
+          deleting = false;
+          roleIdx = (roleIdx + 1) % ROLES.length;
+          setTimeout(typeRole, 400);
+          return;
+        }
+        setTimeout(typeRole, 55);
+      } else {
+        charIdx++;
+        roleEl.textContent = word.substring(0, charIdx);
+        if (charIdx === word.length) {
+          deleting = true;
+          setTimeout(typeRole, 2000);
+          return;
+        }
+        setTimeout(typeRole, 90);
+      }
     }
 
-    function getSystemTheme() {
-      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    /* ============================================================
+       Hero name letter-by-letter animation
+       ============================================================ */
+    function animateHeroName() {
+      const wrap = document.getElementById("heroNameWrap");
+      if (!wrap) return;
+      const text = wrap.textContent;
+      wrap.textContent = "";
+      wrap.style.display = "inline";
+      [...text].forEach((ch, i) => {
+        const span = document.createElement("span");
+        span.className = "hero-name-letter";
+        span.textContent = ch === " " ? "\u00A0" : ch;
+        span.style.animationDelay = (i * 60 + 200) + "ms";
+        wrap.appendChild(span);
+      });
+    }
+
+    /* ============================================================
+       Hero section staggered entry animations
+       ============================================================ */
+    function runHeroAnimations() {
+      const delays = { badge: 0, greeting: 100, name: 200, role: 700, subtitle: 900, buttons: 1100, photo: 300 };
+      document.querySelectorAll("[data-animate-hero]").forEach(el => {
+        const key = el.dataset.animateHero;
+        const delay = delays[key] ?? 0;
+        el.style.opacity = "0";
+        el.style.transform = key === "photo" ? "translateX(40px)" : "translateY(30px)";
+        setTimeout(() => {
+          el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+          el.style.opacity = "1";
+          el.style.transform = "none";
+        }, delay);
+      });
+    }
+
+    /* ============================================================
+       Starfield canvas
+       ============================================================ */
+    function initStarfield() {
+      const canvas = document.getElementById("heroStars");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let W, H, stars = [];
+
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+
+      function createStars(n) {
+        stars = [];
+        for (let i = 0; i < n; i++) {
+          stars.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            r: Math.random() * 1.4 + 0.3,
+            alpha: Math.random() * 0.7 + 0.2,
+            speed: Math.random() * 0.25 + 0.05,
+            twinkle: Math.random() * Math.PI * 2
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        stars.forEach(s => {
+          s.twinkle += 0.018;
+          const a = s.alpha * (0.6 + 0.4 * Math.sin(s.twinkle));
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(200,190,255,${a})`;
+          ctx.fill();
+          s.y -= s.speed;
+          if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
+        });
+        requestAnimationFrame(draw);
+      }
+
+      resize();
+      createStars(180);
+      draw();
+      window.addEventListener("resize", () => { resize(); createStars(180); }, { passive: true });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      // Cache the button once instead of querying the DOM on every theme change
-      themeBtn = document.querySelector(".theme-toggle");
+      runHeroAnimations();
+      animateHeroName();
+      setTimeout(typeRole, 900);
+      initStarfield();
 
-      const saved = localStorage.getItem(THEME_KEY);
-      applyTheme(saved || getSystemTheme());
-
-      if (themeBtn) {
-        themeBtn.addEventListener("click", () => {
-          const current = document.documentElement.getAttribute("data-theme") || "light";
-          const next = current === "dark" ? "light" : "dark";
-          localStorage.setItem(THEME_KEY, next);
-          applyTheme(next);
-        });
-      }
-
-      // ── Hamburger menu ────────────────────────────────────────────────────
+      /* ── Hamburger menu ────────────────────────────────────────────────────── */
       const hamburger = document.getElementById("hamburger");
-      const navLinks = document.getElementById("navLinks");
+      const navLinks  = document.getElementById("navLinks");
       const navOverlay = document.getElementById("navOverlay");
 
       function openNav() {
@@ -743,7 +897,6 @@
         hamburger.setAttribute("aria-expanded", "true");
         document.body.style.overflow = "hidden";
       }
-
       function closeNav() {
         navLinks.classList.remove("nav-open");
         hamburger.classList.remove("is-open");
@@ -751,25 +904,13 @@
         hamburger.setAttribute("aria-expanded", "false");
         document.body.style.overflow = "";
       }
+      if (hamburger) hamburger.addEventListener("click", () =>
+        navLinks.classList.contains("nav-open") ? closeNav() : openNav()
+      );
+      if (navOverlay) navOverlay.addEventListener("click", closeNav);
+      if (navLinks) navLinks.querySelectorAll("a").forEach(l => l.addEventListener("click", closeNav));
 
-      if (hamburger) {
-        hamburger.addEventListener("click", () => {
-          navLinks.classList.contains("nav-open") ? closeNav() : openNav();
-        });
-      }
-
-      if (navOverlay) {
-        navOverlay.addEventListener("click", closeNav);
-      }
-
-      // Close mobile nav when any nav link is clicked
-      if (navLinks) {
-        navLinks.querySelectorAll("a").forEach(link => {
-          link.addEventListener("click", closeNav);
-        });
-      }
-
-      // ── Scroll progress bar & navbar shrink ──────────────────────────────
+      /* ── Scroll progress bar & navbar shrink ──────────────────────────────── */
       const scrollProgressEl = document.getElementById("scrollProgress");
       const navbar = document.getElementById("navbar");
 
@@ -781,14 +922,11 @@
         if (navbar) navbar.classList.toggle("navbar-scrolled", scrollTop > 60);
       }, { passive: true });
 
-      // Active nav link on scroll
+      /* ── Active nav link on scroll ──────────────────────────────────────────── */
       const links = Array.from(document.querySelectorAll(".nav-links a[data-section]"));
       const sections = links.map(l => document.getElementById(l.dataset.section)).filter(Boolean);
 
       const observer = new IntersectionObserver((entries) => {
-        // When multiple entries fire simultaneously (e.g. during fast scrolling),
-        // pick the section whose top edge is closest to the viewport centre so the
-        // correct nav link is highlighted regardless of callback array order.
         const intersecting = entries.filter(e => e.isIntersecting);
         if (!intersecting.length) return;
         const viewportMid = window.innerHeight / 2;
@@ -799,12 +937,9 @@
         const active = links.find(a => a.dataset.section === best.target.id);
         if (active) active.classList.add("active");
       }, { rootMargin: "-45% 0px -45% 0px", threshold: 0.01 });
-
       sections.forEach(sec => observer.observe(sec));
 
-      // ── Scroll-reveal animations ──────────────────────────────────────────
-      // Attach data-animate to all cards so CSS hides them initially,
-      // then reveal them with a staggered transition as they enter the viewport.
+      /* ── Scroll-reveal animations ─────────────────────────────────────────── */
       const revealSelectors = [
         '.skill-card', '.project-card', '.contact-card',
         '.about-card', '.stat', '.skills-category-header'
@@ -813,8 +948,7 @@
         const siblings = Array.from(el.parentElement.children);
         const idx = siblings.indexOf(el);
         el.setAttribute('data-animate', '');
-        // Store stagger delay so we can apply it only during the reveal
-        el.dataset.revealDelay = String(idx * 70); // ms
+        el.dataset.revealDelay = String(idx * 80);
       });
 
       const revealObserver = new IntersectionObserver((entries) => {
@@ -822,21 +956,14 @@
           if (!entry.isIntersecting) return;
           const el = entry.target;
           const delay = parseInt(el.dataset.revealDelay || '0', 10);
-          // CSS transition duration is 0.6s (600 ms); add a small buffer so the
-          // inline override is cleared only after the animation fully completes.
-          const REVEAL_DURATION = 600;
-          // Apply stagger transition, then clear it so hover is instant
-          el.style.transition =
-            `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`;
+          const REVEAL_DURATION = 650;
+          el.style.transition = `opacity 0.65s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.65s cubic-bezier(0.22,1,0.36,1) ${delay}ms`;
           el.classList.add('visible');
           setTimeout(() => { el.style.transition = ''; }, REVEAL_DURATION + 100 + delay);
           revealObserver.unobserve(el);
         });
-      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-      document.querySelectorAll('[data-animate]').forEach(el =>
-        revealObserver.observe(el)
-      );
+      }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+      document.querySelectorAll('[data-animate]').forEach(el => revealObserver.observe(el));
     });
   </script>
 </body>
