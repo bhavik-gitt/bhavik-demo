@@ -22,19 +22,37 @@
   <nav class="navbar" id="navbar">
     <a href="#" class="nav-logo" aria-label="Home">
       <div class="nav-logo-icon">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M18 2L32.5 10.25V26.75L18 35L3.5 26.75V10.25L18 2Z" fill="url(#hexFill2)" opacity="0.22"/>
-          <path d="M18 2L32.5 10.25V26.75L18 35L3.5 26.75V10.25L18 2Z" stroke="url(#hexStroke2)" stroke-width="1.6"/>
-          <text x="18" y="23" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="900" font-size="10" fill="url(#hexText2)">BR</text>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Outer spinning dashed ring -->
+          <circle class="logo-ring" cx="20" cy="20" r="18.5" fill="none" stroke="url(#ringGrad)" stroke-width="1" stroke-dasharray="3.5 3.5" opacity="0.7"/>
+          <!-- Hexagon background fill -->
+          <path d="M20 4L33.5 11.75V27.25L20 35L6.5 27.25V11.75L20 4Z" fill="url(#hexFill2)" opacity="0.25"/>
+          <!-- Hexagon stroke outline -->
+          <path d="M20 4L33.5 11.75V27.25L20 35L6.5 27.25V11.75L20 4Z" stroke="url(#hexStroke2)" stroke-width="1.5"/>
+          <!-- Inner hex glow layer -->
+          <path d="M20 8.5L30.5 14.75V27.25L20 33.5L9.5 27.25V14.75L20 8.5Z" fill="url(#hexInner)" opacity="0.1"/>
+          <!-- BR initials -->
+          <text x="20" y="25" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="900" font-size="11" fill="url(#hexText2)">BR</text>
           <defs>
-            <linearGradient id="hexFill2" x1="3.5" y1="2" x2="32.5" y2="35" gradientUnits="userSpaceOnUse">
+            <linearGradient id="hexFill2" x1="6.5" y1="4" x2="33.5" y2="35" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#a855f7"/>
             </linearGradient>
-            <linearGradient id="hexStroke2" x1="3.5" y1="2" x2="32.5" y2="35" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#6c63ff"/><stop offset="100%" stop-color="#a855f7"/>
+            <linearGradient id="hexStroke2" x1="6.5" y1="4" x2="33.5" y2="35" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#7c73ff"/>
+              <stop offset="50%" stop-color="#d946ef"/>
+              <stop offset="100%" stop-color="#a855f7"/>
             </linearGradient>
-            <linearGradient id="hexText2" x1="12" y1="14" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#c4b5fd"/><stop offset="100%" stop-color="#a855f7"/>
+            <linearGradient id="hexInner" x1="9.5" y1="8.5" x2="30.5" y2="33.5" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#a855f7"/>
+            </linearGradient>
+            <linearGradient id="hexText2" x1="13" y1="16" x2="27" y2="26" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#e8e0ff"/><stop offset="100%" stop-color="#c4b5fd"/>
+            </linearGradient>
+            <linearGradient id="ringGrad" x1="1.5" y1="1.5" x2="38.5" y2="38.5" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#6c63ff" stop-opacity="0"/>
+              <stop offset="40%" stop-color="#a855f7"/>
+              <stop offset="70%" stop-color="#d946ef"/>
+              <stop offset="100%" stop-color="#6c63ff" stop-opacity="0"/>
             </linearGradient>
           </defs>
         </svg>
@@ -239,6 +257,24 @@
             <p>Utility-first CSS, rapid prototyping, custom themes</p>
             <span class="skill-level beginner">Beginner</span>
           </div>
+          <div class="skill-card">
+            <span class="skill-icon">▲</span>
+            <h3>Next.js</h3>
+            <p>SSR, SSG, API routes, file-based routing</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🎀</span>
+            <h3>Sass / SCSS</h3>
+            <p>Variables, mixins, nesting, modular stylesheets</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">⚡</span>
+            <h3>Vite</h3>
+            <p>Fast builds, HMR, modern bundling for JS/TS apps</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
         </div>
       </div>
 
@@ -284,6 +320,30 @@
             <h3>REST APIs</h3>
             <p>API design, HTTP methods, JWT authentication</p>
             <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🐍</span>
+            <h3>Flask</h3>
+            <p>Python micro-framework, routing, REST endpoints</p>
+            <span class="skill-level beginner">Beginner</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🔥</span>
+            <h3>Firebase</h3>
+            <p>Realtime DB, Firestore, Authentication, Hosting</p>
+            <span class="skill-level beginner">Beginner</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🌐</span>
+            <h3>GraphQL</h3>
+            <p>Query language, schemas, resolvers, Apollo client</p>
+            <span class="skill-level learning">Learning</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🗄️</span>
+            <h3>PostgreSQL</h3>
+            <p>Relational DB, advanced queries, indexing</p>
+            <span class="skill-level beginner">Beginner</span>
           </div>
         </div>
       </div>
@@ -331,6 +391,42 @@
             <p>OOP fundamentals, collections, basics</p>
             <span class="skill-level beginner">Beginner</span>
           </div>
+          <div class="skill-card">
+            <span class="skill-icon">🗃️</span>
+            <h3>SQL</h3>
+            <p>Complex queries, joins, aggregations, subqueries</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🐚</span>
+            <h3>Bash / Shell</h3>
+            <p>Scripting, task automation, command-line tools</p>
+            <span class="skill-level beginner">Beginner</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🦀</span>
+            <h3>Rust</h3>
+            <p>Memory safety, ownership model, systems-level code</p>
+            <span class="skill-level learning">Learning</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🐹</span>
+            <h3>Go</h3>
+            <p>Concurrency, goroutines, fast backend services</p>
+            <span class="skill-level learning">Learning</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🐘</span>
+            <h3>PHP</h3>
+            <p>Server-side scripting, web development basics</p>
+            <span class="skill-level beginner">Beginner</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🤖</span>
+            <h3>Kotlin</h3>
+            <p>Android development, concise JVM language</p>
+            <span class="skill-level learning">Learning</span>
+          </div>
         </div>
       </div>
 
@@ -375,6 +471,30 @@
             <span class="skill-icon">🧩</span>
             <h3>Full Stack Dev</h3>
             <p>End-to-end MERN stack project development</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🐳</span>
+            <h3>Docker</h3>
+            <p>Containers, images, Dockerfile, compose setups</p>
+            <span class="skill-level beginner">Beginner</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🎨</span>
+            <h3>Figma</h3>
+            <p>UI/UX design, prototyping, component design</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">📦</span>
+            <h3>npm / Webpack</h3>
+            <p>Package management, bundling, build tooling</p>
+            <span class="skill-level intermediate">Intermediate</span>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">☁️</span>
+            <h3>Vercel / Netlify</h3>
+            <p>Deployment, CI/CD pipelines, serverless hosting</p>
             <span class="skill-level intermediate">Intermediate</span>
           </div>
         </div>
