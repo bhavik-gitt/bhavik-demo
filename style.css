@@ -46,6 +46,7 @@ body {
     color: var(--text-dark);
     line-height: 1.7;
     overflow-x: hidden;
+    padding-top: 70px;
 }
 
 h1, h2, h3, h4 {
@@ -191,8 +192,11 @@ a {
    Navbar — Premium Dark Redesign
    =========================== */
 .navbar {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 100;
     display: flex;
     justify-content: space-between;
@@ -1014,9 +1018,14 @@ a {
 
 .about-name-tag {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: var(--text-dark);
+    font-size: 1.35rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 50%, #a855f7 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s linear infinite;
     text-align: center;
     letter-spacing: -0.01em;
 }
@@ -1435,12 +1444,38 @@ a {
    =========================== */
 .footer {
     text-align: center;
-    padding: 2.5rem 2rem;
+    padding: 3rem 2rem 2rem;
     background: linear-gradient(135deg, #0f0c29 0%, #302b63 60%, #1a1040 100%);
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.9rem;
     position: relative;
     overflow: hidden;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    letter-spacing: 0.02em;
+}
+
+.footer-link:hover { color: #c4b5fd; }
+
+.footer-tagline {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 0.6rem;
+    letter-spacing: 0.04em;
 }
 
 /* Animated top border on footer */
