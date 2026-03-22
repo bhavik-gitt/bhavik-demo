@@ -618,11 +618,26 @@ a {
     margin-bottom: 0.9rem;
 }
 
-/* Individual letter animation */
+/* ===========================
+   FIXED Hero Name Letters
+   =========================== */
 .hero-name-letter {
     display: inline-block;
     opacity: 0;
+    transform: translateY(22px) scale(0.92);
+
+    /* animation */
     animation: letterFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+    /* 🔥 IMPORTANT: gradient applied to EACH letter */
+    background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 50%, #a78bfa 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    /* ✨ optional glow */
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.35);
 }
 
 /* Role line */
