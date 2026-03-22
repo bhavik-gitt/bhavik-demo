@@ -798,6 +798,8 @@
        Hero name letter-by-letter animation
        ============================================================ */
     function animateHeroName() {
+      const LETTER_DELAY_MS = 60;
+      const NAME_ANIMATION_START_MS = 200;
       const wrap = document.getElementById("heroNameWrap");
       if (!wrap) return;
       const text = wrap.textContent;
@@ -807,7 +809,7 @@
         const span = document.createElement("span");
         span.className = "hero-name-letter";
         span.textContent = ch === " " ? "\u00A0" : ch;
-        span.style.animationDelay = (i * 60 + 200) + "ms";
+        span.style.animationDelay = (i * LETTER_DELAY_MS + NAME_ANIMATION_START_MS) + "ms";
         wrap.appendChild(span);
       });
     }
@@ -874,9 +876,10 @@
       }
 
       resize();
-      createStars(180);
+      const STAR_COUNT = 180;
+      createStars(STAR_COUNT);
       draw();
-      window.addEventListener("resize", () => { resize(); createStars(180); }, { passive: true });
+      window.addEventListener("resize", () => { resize(); createStars(STAR_COUNT); }, { passive: true });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
