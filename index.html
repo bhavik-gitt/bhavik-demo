@@ -13,6 +13,28 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="style.css" />
+  <!-- Tailwind CSS CDN (Preflight disabled to avoid overriding site styles) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+  <!-- React 18 + ReactDOM 18 (UMD) -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <!-- Framer Motion (UMD) -->
+  <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.js" crossorigin></script>
+  <!-- Babel Standalone (for in-browser JSX) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body>
@@ -85,63 +107,8 @@
   </nav>
   <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <!-- Starfield canvas background -->
-    <canvas class="hero-stars" id="heroStars" aria-hidden="true"></canvas>
-
-    <!-- Animated floating colour blobs -->
-    <div class="hero-shapes" aria-hidden="true">
-      <div class="hero-shape hero-shape-1"></div>
-      <div class="hero-shape hero-shape-2"></div>
-      <div class="hero-shape hero-shape-3"></div>
-      <div class="hero-shape hero-shape-4"></div>
-      <div class="hero-shape hero-shape-5"></div>
-    </div>
-
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="hero-badge" data-animate-hero="badge">&#10024; Open to Internships &amp; Collaborations</div>
-        <p class="hero-greeting" data-animate-hero="greeting">Hello, I'm</p>
-        <h1 class="hero-name" data-animate-hero="name">
-          <span id="heroNameWrap">Bhavik Ratnottar</span>
-        </h1>
-        <p class="hero-role-line" data-animate-hero="role">
-          I'm a <span id="hero-role" class="hero-role-text"></span><span class="typing-cursor role-cursor" aria-hidden="true"></span>
-        </p>
-        <p class="hero-subtitle" data-animate-hero="subtitle">B.Tech (IT) &bull; Full Stack Developer &bull; AI &amp; Automation Enthusiast</p>
-        <div class="hero-buttons" data-animate-hero="buttons">
-          <a href="#projects" class="btn btn-primary">
-            <span>View Projects</span>
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#contact" class="btn btn-outline">Get In Touch</a>
-          <a href="https://github.com/bhavik-gitt" target="_blank" rel="noreferrer" class="btn btn-ghost" aria-label="GitHub">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-photo-wrap" data-animate-hero="photo">
-        <div class="hero-photo-ring">
-          <div class="hero-photo-inner">
-            <img src="https://github.com/user-attachments/assets/a450d8e6-ff05-4be7-bed2-e74cd9a3d264"
-                 class="hero-photo" alt="Bhavik Ratnottar" loading="eager" />
-          </div>
-        </div>
-        <div class="hero-photo-orb hero-photo-orb-1"></div>
-        <div class="hero-photo-orb hero-photo-orb-2"></div>
-        <div class="hero-photo-badge">
-          <span>&#128187;</span> Full Stack Dev
-        </div>
-      </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-    </div>
-  </section>
+  <!-- Hero (React + Tailwind + Framer Motion) -->
+  <div id="hero-root"></div>
 
   <!-- About -->
   <section id="about" class="section">
@@ -822,139 +789,7 @@
        ============================================================ */
     document.documentElement.setAttribute("data-theme", "dark");
 
-    /* ============================================================
-       Role typing animation
-       ============================================================ */
-    const ROLES = [
-      "Developer",
-      "Coder",
-      "Solution Builder",
-      "AI Enthusiast",
-      "Full Stack Dev",
-      "Problem Solver",
-      "Tech Innovator"
-    ];
-    let roleIdx = 0, charIdx = 0, deleting = false;
-    const roleEl = document.getElementById("hero-role");
-
-    function typeRole() {
-      if (!roleEl) return;
-      const word = ROLES[roleIdx];
-      if (deleting) {
-        charIdx--;
-        roleEl.textContent = word.substring(0, charIdx);
-        if (charIdx <= 0) {
-          deleting = false;
-          roleIdx = (roleIdx + 1) % ROLES.length;
-          setTimeout(typeRole, 400);
-          return;
-        }
-        setTimeout(typeRole, 55);
-      } else {
-        charIdx++;
-        roleEl.textContent = word.substring(0, charIdx);
-        if (charIdx === word.length) {
-          deleting = true;
-          setTimeout(typeRole, 2000);
-          return;
-        }
-        setTimeout(typeRole, 90);
-      }
-    }
-
-    /* ============================================================
-       Hero name letter-by-letter animation
-       ============================================================ */
-    function animateHeroName() {
-      const LETTER_DELAY_MS = 60;
-      const NAME_ANIMATION_START_MS = 200;
-      const wrap = document.getElementById("heroNameWrap");
-      if (!wrap) return;
-      const text = wrap.textContent;
-      wrap.textContent = "";
-      wrap.style.display = "inline";
-      [...text].forEach((ch, i) => {
-        const span = document.createElement("span");
-        span.className = "hero-name-letter";
-        span.textContent = ch === " " ? "\u00A0" : ch;
-        span.style.animationDelay = (i * LETTER_DELAY_MS + NAME_ANIMATION_START_MS) + "ms";
-        wrap.appendChild(span);
-      });
-    }
-
-    /* ============================================================
-       Hero section staggered entry animations
-       ============================================================ */
-    function runHeroAnimations() {
-      const delays = { badge: 0, greeting: 100, name: 200, role: 700, subtitle: 900, buttons: 1100, photo: 300 };
-      document.querySelectorAll("[data-animate-hero]").forEach(el => {
-        const key = el.dataset.animateHero;
-        const delay = delays[key] ?? 0;
-        el.style.opacity = "0";
-        el.style.transform = key === "photo" ? "translateX(40px)" : "translateY(30px)";
-        setTimeout(() => {
-          el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
-          el.style.opacity = "1";
-          el.style.transform = "none";
-        }, delay);
-      });
-    }
-
-    /* ============================================================
-       Starfield canvas
-       ============================================================ */
-    function initStarfield() {
-      const canvas = document.getElementById("heroStars");
-      if (!canvas) return;
-      const ctx = canvas.getContext("2d");
-      let W, H, stars = [];
-
-      function resize() {
-        W = canvas.width = canvas.offsetWidth;
-        H = canvas.height = canvas.offsetHeight;
-      }
-
-      function createStars(n) {
-        stars = [];
-        for (let i = 0; i < n; i++) {
-          stars.push({
-            x: Math.random() * W,
-            y: Math.random() * H,
-            r: Math.random() * 1.4 + 0.3,
-            alpha: Math.random() * 0.7 + 0.2,
-            speed: Math.random() * 0.25 + 0.05,
-            twinkle: Math.random() * Math.PI * 2
-          });
-        }
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, W, H);
-        stars.forEach(s => {
-          s.twinkle += 0.018;
-          const a = s.alpha * (0.6 + 0.4 * Math.sin(s.twinkle));
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(200,190,255,${a})`;
-          ctx.fill();
-          s.y -= s.speed;
-          if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
-        });
-        requestAnimationFrame(draw);
-      }
-
-      resize();
-      const STAR_COUNT = 180;
-      createStars(STAR_COUNT);
-      draw();
-      window.addEventListener("resize", () => { resize(); createStars(STAR_COUNT); }, { passive: true });
-    }
-
     document.addEventListener("DOMContentLoaded", () => {
-      runHeroAnimations();
-      animateHeroName();
-      setTimeout(typeRole, 900);
-      initStarfield();
 
       /* ── Hamburger menu ────────────────────────────────────────────────────── */
       const hamburger = document.getElementById("hamburger");
@@ -1036,6 +871,272 @@
       }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
       document.querySelectorAll('[data-animate]').forEach(el => revealObserver.observe(el));
     });
+  </script>
+
+  <!-- React Hero Section Component -->
+  <script type="text/babel">
+    (function () {
+      const { useState, useEffect, useRef } = React;
+      const { motion, useInView } = window.FramerMotion;
+
+      const HERO_ROLES = [
+        "Full Stack Developer",
+        "React Developer",
+        "AI Enthusiast",
+        "Problem Solver",
+        "Tech Innovator",
+        "Solution Builder",
+      ];
+
+      const HERO_STATS = [
+        { icon: "⚡", value: 300, suffix: "+", label: "DSA Problems" },
+        { icon: "🚀", value: 9,   suffix: "+", label: "Projects Built" },
+        { icon: "🏆", value: 2,   suffix: "",  label: "Achievements"  },
+      ];
+
+      function useTypingEffect(texts, typingSpeed = 85, deletingSpeed = 50, pauseTime = 2000) {
+        const [displayed, setDisplayed] = useState("");
+        const [roleIdx, setRoleIdx]     = useState(0);
+        const [deleting, setDeleting]   = useState(false);
+        useEffect(() => {
+          const word = texts[roleIdx];
+          let t;
+          if (!deleting && displayed.length < word.length) {
+            t = setTimeout(() => setDisplayed(word.substring(0, displayed.length + 1)), typingSpeed);
+          } else if (!deleting && displayed.length === word.length) {
+            t = setTimeout(() => setDeleting(true), pauseTime);
+          } else if (deleting && displayed.length > 0) {
+            t = setTimeout(() => setDisplayed(word.substring(0, displayed.length - 1)), deletingSpeed);
+          } else {
+            setDeleting(false);
+            setRoleIdx((i) => (i + 1) % texts.length);
+          }
+          return () => clearTimeout(t);
+        }, [displayed, deleting, roleIdx]);
+        return displayed;
+      }
+
+      function AnimatedCounter({ target, suffix }) {
+        const [count, setCount] = useState(0);
+        const ref   = useRef(null);
+        const inView = useInView(ref, { once: true, margin: "-40px" });
+        useEffect(() => {
+          if (!inView) return;
+          let start = 0;
+          const duration = 1400;
+          const step = target / (duration / 16);
+          const timer = setInterval(() => {
+            start += step;
+            if (start >= target) { setCount(target); clearInterval(timer); }
+            else { setCount(Math.floor(start)); }
+          }, 16);
+          return () => clearInterval(timer);
+        }, [inView, target]);
+        return <span ref={ref}>{count}{suffix}</span>;
+      }
+
+      const stagger = {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.14, delayChildren: 0.1 } },
+      };
+      const fadeUp = {
+        hidden:  { opacity: 0, y: 32 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
+      };
+      const fadeRight = {
+        hidden:  { opacity: 0, x: 50 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.25 } },
+      };
+
+      function HeroSection() {
+        const typedRole = useTypingEffect(HERO_ROLES);
+
+        return (
+          <section
+            style={{
+              minHeight: "100vh",
+              background: "linear-gradient(135deg, #03030a 0%, #0d0b2a 30%, #120c30 60%, #03030a 100%)",
+              backgroundSize: "300% 300%",
+              animation: "gradientFlow 18s ease infinite",
+              position: "relative",
+              overflow: "hidden",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {/* Animated grid overlay */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute", inset: 0, pointerEvents: "none",
+                backgroundImage: "linear-gradient(rgba(108,99,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,0.05) 1px,transparent 1px)",
+                backgroundSize: "52px 52px",
+                animation: "gridScroll 12s linear infinite",
+              }}
+            />
+
+            {/* Floating colour blobs */}
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1 }}>
+              <div style={{ position: "absolute", width: 700, height: 700, borderRadius: "50%", background: "radial-gradient(circle at 40% 40%,#6c63ff 0%,transparent 70%)", top: -220, left: -220, opacity: 0.28, filter: "blur(80px)", animation: "floatA 18s ease-in-out infinite" }} />
+              <div style={{ position: "absolute", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle at 60% 60%,#a855f7 0%,transparent 70%)", bottom: -120, right: -160, opacity: 0.22, filter: "blur(80px)", animation: "floatB 22s ease-in-out infinite" }} />
+              <div style={{ position: "absolute", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle at 50% 50%,#43e97b 0%,transparent 70%)", top: "55%", left: "62%", opacity: 0.1, filter: "blur(80px)", animation: "floatA 25s ease-in-out infinite 4s" }} />
+              <div style={{ position: "absolute", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle at 50% 50%,#ff6584 0%,transparent 70%)", top: "18%", left: "18%", opacity: 0.1, filter: "blur(80px)", animation: "floatB 17s ease-in-out infinite 2s" }} />
+            </div>
+
+            {/* Bottom fade */}
+            <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 120, background: "linear-gradient(to bottom,transparent,#06060f)", zIndex: 2, pointerEvents: "none" }} />
+
+            {/* Main content */}
+            <div
+              className="hero-react-content"
+              style={{
+                position: "relative", zIndex: 3,
+                maxWidth: 1100, width: "100%",
+                margin: "0 auto",
+                padding: "6rem 2.5rem 4rem",
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "4rem",
+              }}
+            >
+              {/* ── Left: text ── */}
+              <motion.div
+                style={{ flex: "1 1 340px", minWidth: 0 }}
+                variants={stagger}
+                initial="hidden"
+                animate="visible"
+              >
+                {/* Badge */}
+                <motion.div variants={fadeUp} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "rgba(108,99,255,0.14)", border: "1px solid rgba(196,181,253,0.28)", color: "#c4b5fd", padding: "0.4rem 1.1rem", borderRadius: 50, fontSize: "0.82rem", fontWeight: 700, marginBottom: "1.6rem", backdropFilter: "blur(10px)", letterSpacing: "0.03em", animation: "heroBadgeFloat 4s ease-in-out infinite 1.5s" }}>
+                  ✨ Open to Internships &amp; Collaborations
+                </motion.div>
+
+                {/* Greeting */}
+                <motion.p variants={fadeUp} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "1rem", color: "rgba(255,255,255,0.6)", marginBottom: "0.5rem", letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 500 }}>
+                  Hello, I'm
+                </motion.p>
+
+                {/* Name */}
+                <motion.h1
+                  variants={fadeUp}
+                  style={{
+                    fontFamily: "'Poppins',sans-serif",
+                    fontSize: "clamp(2.6rem,6vw,4.4rem)",
+                    fontWeight: 900,
+                    letterSpacing: "-0.03em",
+                    lineHeight: 1.1,
+                    background: "linear-gradient(135deg,#fff 0%,#c4b5fd 50%,#a78bfa 100%)",
+                    backgroundSize: "200% 100%",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    animation: "shimmer 7s linear 1.5s infinite",
+                    marginBottom: "0.9rem",
+                  }}
+                >
+                  Bhavik Ratnottar
+                </motion.h1>
+
+                {/* Typing role */}
+                <motion.p variants={fadeUp} style={{ fontSize: "1.2rem", color: "rgba(255,255,255,0.78)", marginBottom: "1.2rem", fontWeight: 500, minHeight: "1.8rem" }}>
+                  I'm a{" "}
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, background: "linear-gradient(90deg,#6c63ff,#a855f7,#ff6584)", backgroundSize: "200% 100%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", animation: "shimmer 3s linear infinite" }}>
+                    {typedRole}
+                  </span>
+                  <span aria-hidden="true" style={{ display: "inline-block", width: 2, height: "1em", background: "#a855f7", marginLeft: 2, verticalAlign: "text-bottom", borderRadius: 1, animation: "blink 1s step-end infinite" }} />
+                </motion.p>
+
+                {/* Subtitle */}
+                <motion.p variants={fadeUp} style={{ fontSize: "1rem", color: "rgba(255,255,255,0.55)", marginBottom: "2.4rem", lineHeight: 1.85 }}>
+                  B.Tech (IT) &bull; Full Stack Developer &bull; AI &amp; Automation Enthusiast
+                </motion.p>
+
+                {/* Buttons */}
+                <motion.div variants={fadeUp} style={{ display: "flex", gap: "0.9rem", flexWrap: "wrap", marginBottom: "2.5rem" }}>
+                  <motion.a
+                    href="#projects"
+                    style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.75rem", borderRadius: 50, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: "1rem", background: "linear-gradient(135deg,#6c63ff 0%,#a855f7 100%)", color: "#fff", boxShadow: "0 4px 18px rgba(108,99,255,0.45)", letterSpacing: "0.02em", textDecoration: "none" }}
+                    whileHover={{ y: -3, scale: 1.03, boxShadow: "0 8px 28px rgba(108,99,255,0.6)", filter: "brightness(1.12)" }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    View Projects
+                    <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </motion.a>
+
+                  <motion.a
+                    href="https://drive.google.com/uc?export=download&id=YOUR_RESUME_FILE_ID"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.75rem", borderRadius: 50, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: "1rem", background: "transparent", color: "#fff", border: "2px solid rgba(255,255,255,0.48)", backdropFilter: "blur(8px)", letterSpacing: "0.02em", textDecoration: "none" }}
+                    whileHover={{ y: -3, background: "rgba(255,255,255,0.1)", borderColor: "#ffffff", boxShadow: "0 4px 18px rgba(255,255,255,0.12)" }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Download Resume
+                  </motion.a>
+                </motion.div>
+
+                {/* Animated stats */}
+                <motion.div variants={fadeUp} style={{ display: "flex", flexWrap: "wrap", gap: "2rem" }}>
+                  {HERO_STATS.map(({ icon, value, suffix, label }) => (
+                    <div key={label} style={{ textAlign: "center" }}>
+                      <div style={{ fontFamily: "'Poppins',sans-serif", fontSize: "1.6rem", fontWeight: 900, background: "linear-gradient(135deg,#6c63ff,#a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", lineHeight: 1.2 }}>
+                        <span style={{ WebkitTextFillColor: "initial", fontSize: "1.2rem" }}>{icon}</span>{" "}
+                        <AnimatedCounter target={value} suffix={suffix} />
+                      </div>
+                      <div style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.5)", fontWeight: 600, marginTop: "0.2rem", letterSpacing: "0.04em", textTransform: "uppercase" }}>{label}</div>
+                    </div>
+                  ))}
+                </motion.div>
+              </motion.div>
+
+              {/* ── Right: photo ── */}
+              <motion.div
+                style={{ flexShrink: 0, position: "relative", width: 320, height: 320 }}
+                variants={fadeRight}
+                initial="hidden"
+                animate="visible"
+              >
+                <div style={{ width: 300, height: 300, borderRadius: "50%", padding: 4, background: "linear-gradient(135deg,#6c63ff,#a855f7,#ff6584,#43e97b,#6c63ff)", backgroundSize: "400% 400%", animation: "gradientBorder 4s ease infinite, heroPhotoFloat 5s ease-in-out infinite", boxShadow: "0 0 40px rgba(108,99,255,0.5),0 0 80px rgba(168,85,247,0.25)", position: "relative", zIndex: 2 }}>
+                  <div style={{ width: "100%", height: "100%", borderRadius: "50%", overflow: "hidden", background: "#0d0b2a", border: "3px solid rgba(6,6,15,0.9)" }}>
+                    <img
+                      src="https://github.com/user-attachments/assets/a450d8e6-ff05-4be7-bed2-e74cd9a3d264"
+                      alt="Bhavik Ratnottar"
+                      loading="eager"
+                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", display: "block", transition: "transform 0.4s ease" }}
+                      onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"}
+                      onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
+                    />
+                  </div>
+                </div>
+                {/* Orbs */}
+                <div aria-hidden="true" style={{ position: "absolute", width: 80, height: 80, borderRadius: "50%", background: "radial-gradient(circle,rgba(108,99,255,0.8) 0%,transparent 70%)", top: -10, right: -10, animation: "orbFloat1 5s ease-in-out infinite", filter: "blur(10px)" }} />
+                <div aria-hidden="true" style={{ position: "absolute", width: 60, height: 60, borderRadius: "50%", background: "radial-gradient(circle,rgba(255,101,132,0.8) 0%,transparent 70%)", bottom: 10, left: -15, animation: "orbFloat2 6s ease-in-out infinite 1s", filter: "blur(8px)" }} />
+                {/* Badge */}
+                <div style={{ position: "absolute", bottom: -10, right: -10, background: "linear-gradient(135deg,rgba(12,12,30,0.95),rgba(20,15,50,0.95))", border: "1px solid rgba(108,99,255,0.4)", borderRadius: 50, padding: "0.45rem 1rem", fontSize: "0.78rem", fontWeight: 700, color: "#c4b5fd", letterSpacing: "0.04em", backdropFilter: "blur(10px)", zIndex: 3, boxShadow: "0 4px 20px rgba(108,99,255,0.3)", whiteSpace: "nowrap", animation: "heroBadgeFloat 3.5s ease-in-out infinite 2s" }}>
+                  💻 Full Stack Dev
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Scroll indicator */}
+            <div aria-hidden="true" style={{ position: "absolute", bottom: "2.5rem", left: "50%", transform: "translateX(-50%)", zIndex: 3 }}>
+              <div style={{ width: 24, height: 38, border: "2px solid rgba(255,255,255,0.3)", borderRadius: 12, display: "flex", justifyContent: "center", paddingTop: 6 }}>
+                <div style={{ width: 4, height: 8, background: "rgba(255,255,255,0.6)", borderRadius: 2, animation: "scrollWheel 1.6s ease-in-out infinite" }} />
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      const heroRoot = document.getElementById("hero-root");
+      if (heroRoot) {
+        ReactDOM.createRoot(heroRoot).render(<HeroSection />);
+      }
+    })();
   </script>
 </body>
 </html>
