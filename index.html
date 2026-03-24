@@ -912,7 +912,7 @@
             setRoleIdx((i) => (i + 1) % texts.length);
           }
           return () => clearTimeout(t);
-        }, [displayed, deleting, roleIdx]);
+        }, [displayed, deleting, roleIdx, texts, typingSpeed, deletingSpeed, pauseTime]);
         return displayed;
       }
 
@@ -1067,9 +1067,7 @@
                   </motion.a>
 
                   <motion.a
-                    href="https://drive.google.com/uc?export=download&id=YOUR_RESUME_FILE_ID"
-                    target="_blank"
-                    rel="noreferrer"
+                    href="#contact"
                     style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.75rem", borderRadius: 50, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: "1rem", background: "transparent", color: "#fff", border: "2px solid rgba(255,255,255,0.48)", backdropFilter: "blur(8px)", letterSpacing: "0.02em", textDecoration: "none" }}
                     whileHover={{ y: -3, background: "rgba(255,255,255,0.1)", borderColor: "#ffffff", boxShadow: "0 4px 18px rgba(255,255,255,0.12)" }}
                     whileTap={{ scale: 0.97 }}
