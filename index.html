@@ -96,6 +96,7 @@
       <li><a href="#experience" data-section="experience"><span class="nav-link-icon">💼</span>Experience</a></li>
       <li><a href="#certificates" data-section="certificates"><span class="nav-link-icon">📜</span>Certificates</a></li>
       <li><a href="#achievements" data-section="achievements"><span class="nav-link-icon">🏆</span>Achievements</a></li>
+      <li><a href="#coding" data-section="coding"><span class="nav-link-icon">💻</span>Coding</a></li>
       <li><a href="#contact" data-section="contact"><span class="nav-link-icon">✉️</span>Contact</a></li>
     </ul>
 
@@ -634,6 +635,11 @@
       </div>
     </div>
   </section>
+  <!-- Coding Profiles (React component) -->
+  <section id="coding" class="section section-alt">
+    <div id="coding-root"></div>
+  </section>
+
   <!-- Contact -->
   <section id="contact" class="section section-alt">
     <div class="container">
@@ -1590,6 +1596,338 @@
       const projectsRoot = document.getElementById("projects-root");
       if (projectsRoot) {
         ReactDOM.createRoot(projectsRoot).render(<ProjectsSection />);
+      }
+    })();
+  </script>
+
+  <!-- React Coding Profiles Section Component -->
+  <script type="text/babel">
+    (function () {
+      const { useState, useEffect, useRef } = React;
+      const { motion, useInView } = window.FramerMotion;
+
+      /* ── Platform data ── */
+      const PLATFORMS = [
+        {
+          id: "leetcode",
+          name: "LeetCode",
+          url: "https://leetcode.com/u/bhavikratnottar/",
+          accentColor: "#f89f1b",
+          glowColor: "rgba(248,159,27,0.35)",
+          borderColor: "rgba(248,159,27,0.3)",
+          icon: (
+            <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36" aria-hidden="true">
+              <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
+            </svg>
+          ),
+          stats: [
+            { label: "Problems Solved", value: 200, suffix: "+" },
+            { label: "Contest Rating", value: 1450, suffix: "" },
+            { label: "Global Rank", value: 350000, suffix: "+" },
+          ],
+          badge: "Active",
+          badgeColor: "#f89f1b",
+        },
+        {
+          id: "gfg",
+          name: "GeeksforGeeks",
+          url: "https://www.geeksforgeeks.org/user/bhavikratnottar/",
+          accentColor: "#2f8d46",
+          glowColor: "rgba(47,141,70,0.35)",
+          borderColor: "rgba(47,141,70,0.3)",
+          icon: (
+            <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36" aria-hidden="true">
+              <path d="M21.45 14.315c-.143.28-.334.532-.565.745a3.691 3.691 0 0 1-1.104.695 4.51 4.51 0 0 1-3.116-.016 3.79 3.79 0 0 1-1.106-.712 3.49 3.49 0 0 1-.79-1.19H12.7a3.49 3.49 0 0 1-.79 1.19 3.79 3.79 0 0 1-1.106.712 4.51 4.51 0 0 1-3.116.016 3.691 3.691 0 0 1-1.104-.695 3.21 3.21 0 0 1-.565-.745A2.547 2.547 0 0 1 5.79 13.1a2.71 2.71 0 0 1 .397-1.442 3.378 3.378 0 0 1 1.101-1.091V10.5h-.56a.765.765 0 0 1-.557-.228.765.765 0 0 1-.228-.557V8.935a.764.764 0 0 1 .228-.557.764.764 0 0 1 .557-.228h1.967a5.01 5.01 0 0 1 1.57.248 4.208 4.208 0 0 1 1.267.693 3.542 3.542 0 0 1 .862 1.09c.12.23.21.472.27.722H12c.06-.25.15-.492.27-.722a3.542 3.542 0 0 1 .862-1.09 4.208 4.208 0 0 1 1.267-.693 5.01 5.01 0 0 1 1.57-.248h1.967a.764.764 0 0 1 .557.228.764.764 0 0 1 .228.557v1.78a.764.764 0 0 1-.228.557.764.764 0 0 1-.557.228h-.56v.067a3.378 3.378 0 0 1 1.101 1.091A2.71 2.71 0 0 1 18.87 13.1a2.547 2.547 0 0 1-.42 1.215z"/>
+            </svg>
+          ),
+          stats: [
+            { label: "Problems Solved", value: 170, suffix: "+" },
+            { label: "Coding Score", value: 420, suffix: "" },
+            { label: "Institute Rank", value: 5, suffix: "" },
+          ],
+          badge: "3★",
+          badgeColor: "#2f8d46",
+        },
+        {
+          id: "codechef",
+          name: "CodeChef",
+          url: "https://www.codechef.com/users/bhavikratnottar",
+          accentColor: "#5b4638",
+          glowColor: "rgba(91,70,56,0.5)",
+          borderColor: "rgba(91,70,56,0.4)",
+          icon: (
+            <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36" aria-hidden="true">
+              <path d="M11.257.004C5.23.364.185 5.38.008 11.405c-.174 5.873 3.916 10.93 9.526 12.05a.36.36 0 0 0 .425-.417c-.057-.288-.104-.578-.138-.872a.36.36 0 0 0-.31-.316C4.905 20.996 1.2 16.524 1.35 11.45 1.51 6.011 6.056 1.494 11.497 1.36c5.8-.143 10.57 4.494 10.57 10.266 0 3.425-1.68 6.548-4.513 8.516a.359.359 0 0 0-.08.503c.18.239.348.485.504.737a.36.36 0 0 0 .531.098C21.634 19.176 23.42 15.608 23.42 11.627 23.42 5.175 17.9-.368 11.257.004zm.536 5.02a6.44 6.44 0 0 0-4.598 1.915c-.265.267-.508.557-.723.866a.363.363 0 0 0 .09.505c.24.17.474.352.696.549a.364.364 0 0 0 .504-.034 4.73 4.73 0 0 1 3.405-1.488 4.753 4.753 0 0 1 3.406 1.488.364.364 0 0 0 .503.034c.222-.197.457-.379.697-.549a.362.362 0 0 0 .09-.505 6.332 6.332 0 0 0-.724-.866 6.441 6.441 0 0 0-3.346-1.915zm-4.85 4.243a.364.364 0 0 0-.356.294 6.45 6.45 0 0 0-.119 1.24 6.38 6.38 0 0 0 1.145 3.664.362.362 0 0 0 .504.092c.237-.163.481-.315.731-.455a.36.36 0 0 0 .136-.492 4.703 4.703 0 0 1-.639-2.37c0-.298.031-.592.09-.88a.36.36 0 0 0-.29-.424 9.01 9.01 0 0 1-.867-.217.367.367 0 0 0-.334.048zm9.703 0a.365.365 0 0 0-.334-.048 9.068 9.068 0 0 1-.867.217.36.36 0 0 0-.29.424c.059.288.09.582.09.88a4.703 4.703 0 0 1-.638 2.37.362.362 0 0 0 .135.492c.25.14.494.292.731.455a.363.363 0 0 0 .505-.092 6.38 6.38 0 0 0 1.145-3.664c0-.42-.04-.836-.12-1.24a.365.365 0 0 0-.357-.294zm-5.852 1.22c-.493 0-.892.399-.892.892 0 .492.4.892.892.892.493 0 .893-.4.893-.892 0-.493-.4-.893-.893-.893zm-2.5.63c-.43 0-.777.348-.777.778 0 .429.348.777.777.777.43 0 .778-.348.778-.777 0-.43-.349-.778-.778-.778zm5 0c-.43 0-.778.348-.778.778 0 .429.348.777.778.777.43 0 .777-.348.777-.777 0-.43-.348-.778-.777-.778z"/>
+            </svg>
+          ),
+          stats: [
+            { label: "Rating", value: 1612, suffix: "" },
+            { label: "Stars", value: 3, suffix: "★" },
+            { label: "Problems Solved", value: 80, suffix: "+" },
+          ],
+          badge: "3★",
+          badgeColor: "#f5a623",
+        },
+      ];
+
+      /* ── Animated Counter ── */
+      function AnimatedCounter({ target, suffix, accentColor, duration = 1800 }) {
+        const [count, setCount] = useState(0);
+        const ref = useRef(null);
+        const inView = useInView(ref, { once: true, margin: "-80px" });
+
+        useEffect(() => {
+          if (!inView) return;
+          let rafId;
+          let start = null;
+          const step = (timestamp) => {
+            if (!start) start = timestamp;
+            const elapsed = timestamp - start;
+            const progress = Math.min(elapsed / duration, 1);
+            // easeOutExpo
+            const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            setCount(Math.floor(ease * target));
+            if (progress < 1) { rafId = requestAnimationFrame(step); }
+            else setCount(target);
+          };
+          rafId = requestAnimationFrame(step);
+          return () => cancelAnimationFrame(rafId);
+        }, [inView, target, duration]);
+
+        return (
+          <span ref={ref} aria-live="polite" style={{ color: accentColor, fontFamily: "'JetBrains Mono',monospace" }}>
+            {count.toLocaleString()}{suffix}
+          </span>
+        );
+      }
+
+      /* ── Platform Card ── */
+      function PlatformCard({ platform, index }) {
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: index * 0.12 }}
+            style={{
+              background: "var(--glass)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              border: `1px solid ${platform.borderColor}`,
+              borderRadius: "var(--radius)",
+              padding: "2rem",
+              boxShadow: `0 6px 28px rgba(0,0,0,0.45), 0 0 32px ${platform.glowColor}`,
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.25rem",
+              position: "relative",
+              overflow: "hidden",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            }}
+            whileHover={{
+              y: -8,
+              boxShadow: `0 14px 48px rgba(0,0,0,0.5), 0 0 48px ${platform.glowColor}`,
+            }}
+          >
+            {/* Top glow accent */}
+            <div style={{
+              position: "absolute",
+              top: 0, left: 0, right: 0,
+              height: "3px",
+              background: `linear-gradient(90deg, transparent, ${platform.accentColor}, transparent)`,
+              borderRadius: "var(--radius) var(--radius) 0 0",
+            }} />
+
+            {/* Header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+                <div style={{
+                  color: platform.accentColor,
+                  background: `${platform.accentColor}18`,
+                  border: `1px solid ${platform.borderColor}`,
+                  borderRadius: "10px",
+                  padding: "0.5rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                  {platform.icon}
+                </div>
+                <h3 style={{
+                  fontFamily: "'Poppins',sans-serif",
+                  fontWeight: 700,
+                  fontSize: "1.1rem",
+                  color: "var(--text-dark)",
+                  margin: 0,
+                }}>
+                  {platform.name}
+                </h3>
+              </div>
+              <span style={{
+                fontSize: "0.7rem",
+                fontWeight: 700,
+                color: platform.badgeColor,
+                background: `${platform.badgeColor}18`,
+                border: `1px solid ${platform.badgeColor}44`,
+                padding: "0.22rem 0.7rem",
+                borderRadius: "50px",
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
+              }}>
+                {platform.badge}
+              </span>
+            </div>
+
+            {/* Divider */}
+            <div style={{
+              height: "1px",
+              background: `linear-gradient(90deg, transparent, ${platform.accentColor}44, transparent)`,
+            }} />
+
+            {/* Stats */}
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "0.75rem",
+            }}>
+              {platform.stats.map((stat) => (
+                <div key={stat.label} style={{
+                  background: `${platform.accentColor}0d`,
+                  border: `1px solid ${platform.accentColor}22`,
+                  borderRadius: "10px",
+                  padding: "0.85rem 0.6rem",
+                  textAlign: "center",
+                }}>
+                  <div style={{
+                    fontSize: "1.35rem",
+                    fontWeight: 800,
+                    lineHeight: 1.2,
+                    marginBottom: "0.3rem",
+                  }}>
+                    <AnimatedCounter
+                      target={stat.value}
+                      suffix={stat.suffix}
+                      accentColor={platform.accentColor}
+                    />
+                  </div>
+                  <div style={{
+                    fontSize: "0.7rem",
+                    color: "var(--text-muted)",
+                    lineHeight: 1.3,
+                    fontWeight: 500,
+                  }}>
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Link button */}
+            <a
+              href={platform.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
+                padding: "0.65rem 1.25rem",
+                borderRadius: "50px",
+                border: `1.5px solid ${platform.accentColor}`,
+                color: platform.accentColor,
+                background: `${platform.accentColor}10`,
+                fontSize: "0.88rem",
+                fontWeight: 600,
+                textDecoration: "none",
+                transition: "background 0.25s ease, box-shadow 0.25s ease",
+                marginTop: "auto",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = `${platform.accentColor}22`;
+                e.currentTarget.style.boxShadow = `0 0 18px ${platform.glowColor}`;
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = `${platform.accentColor}10`;
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              View Profile
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </motion.div>
+        );
+      }
+
+      /* ── Main Section ── */
+      function CodingProfilesSection() {
+        return (
+          <div style={{ maxWidth: 1150, margin: "0 auto", padding: "0 2rem" }}>
+            {/* Heading */}
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              style={{ textAlign: "center", marginBottom: "3rem" }}
+            >
+              <p style={{
+                fontFamily: "'JetBrains Mono',monospace",
+                fontSize: "0.8rem",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "rgba(108,99,255,0.9)",
+                fontWeight: 700,
+                marginBottom: "0.75rem",
+              }}>
+                // competitive programming
+              </p>
+              <h2 style={{
+                fontFamily: "'Poppins',sans-serif",
+                fontSize: "clamp(2rem,4.5vw,3rem)",
+                fontWeight: 900,
+                background: "linear-gradient(135deg,#fff 0%,#c4b5fd 50%,#a78bfa 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                margin: "0 0 0.75rem",
+                lineHeight: 1.15,
+              }}>
+                Coding Profiles
+              </h2>
+              <p style={{
+                fontSize: "1rem",
+                color: "rgba(255,255,255,0.5)",
+                maxWidth: 520,
+                margin: "0 auto",
+                lineHeight: 1.7,
+              }}>
+                Stats and achievements across competitive programming platforms.
+              </p>
+            </motion.div>
+
+            {/* Cards grid */}
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+              gap: "1.75rem",
+            }}>
+              {PLATFORMS.map((platform, i) => (
+                <PlatformCard key={platform.id} platform={platform} index={i} />
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      const codingRoot = document.getElementById("coding-root");
+      if (codingRoot) {
+        ReactDOM.createRoot(codingRoot).render(<CodingProfilesSection />);
       }
     })();
   </script>
