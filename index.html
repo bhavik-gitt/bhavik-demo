@@ -1182,15 +1182,25 @@
     });
 
       /* ── Contact form (EmailJS) ───────────────────────────────────────────── */
-      // Replace the placeholder values below with your actual EmailJS credentials.
-      // Sign up at https://www.emailjs.com/ to get your Service ID, Template ID, and Public Key.
+      // To enable EmailJS: sign up at https://www.emailjs.com/, create a service
+      // and email template, then paste your real IDs below.
+      // While these remain as placeholders the form falls back to mailto: automatically.
       const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
       const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
       const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
 
-      if (typeof emailjs !== 'undefined') {
+      const EMAILJS_CONFIGURED =
+        EMAILJS_SERVICE_ID  !== 'YOUR_SERVICE_ID'  &&
+        EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID' &&
+        EMAILJS_PUBLIC_KEY  !== 'YOUR_PUBLIC_KEY';
+
+      const EMAILJS_AVAILABLE = typeof emailjs !== 'undefined';
+
+      if (EMAILJS_CONFIGURED && EMAILJS_AVAILABLE) {
         emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
       }
+
+      const CONTACT_EMAIL = 'bhavikratnottar071@gmail.com';
 
       const contactForm    = document.getElementById('contactForm');
       const contactSuccess = document.getElementById('contactSuccess');
@@ -1217,6 +1227,18 @@
         contactSuccess.hidden = true;
         contactSuccess.classList.remove('contact-success--visible');
         if (contactError) { contactError.hidden = true; contactError.textContent = ''; }
+      }
+
+      function openMailto(name, email, message) {
+        // Strip control characters before encoding into the mailto URL
+        const safeName    = name.replace(/[\x00-\x1F\x7F]/g, '');
+        const safeEmail   = email.replace(/[\x00-\x1F\x7F]/g, '');
+        const safeMessage = message.replace(/[\x00-\x1F\x7F]/g, '');
+        const subject = encodeURIComponent('Portfolio Contact from ' + safeName);
+        const body    = encodeURIComponent(
+          'Name: ' + safeName + '\nEmail: ' + safeEmail + '\n\nMessage:\n' + safeMessage
+        );
+        window.open('mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body, '_blank');
       }
 
       if (contactForm) {
@@ -1249,21 +1271,31 @@
           setSubmitting(true);
 
           try {
-            if (typeof emailjs === 'undefined') {
-              throw new Error('EmailJS not loaded');
+            if (EMAILJS_CONFIGURED && EMAILJS_AVAILABLE) {
+              // Use EmailJS when credentials are properly configured
+              await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                from_name:  name,
+                from_email: email,
+                message:    message,
+                to_name:    'Bhavik',
+              });
+              showSuccess();
+            } else {
+              // Fallback: open the user's mail client pre-filled with the form data
+              openMailto(name, email, message);
+              showSuccess();
             }
-            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-              from_name:  name,
-              from_email: email,
-              message:    message,
-              to_name:    'Bhavik',
-            });
-            showSuccess();
           } catch (err) {
             console.error('EmailJS error:', err);
-            if (contactError) {
-              contactError.textContent = 'Something went wrong. Please try again or email me directly.';
-              contactError.hidden = false;
+            // On EmailJS failure also fall back to mailto so the message is never lost
+            try {
+              openMailto(name, email, message);
+              showSuccess();
+            } catch (_) {
+              if (contactError) {
+                contactError.textContent = 'Something went wrong. Please email me directly at ' + CONTACT_EMAIL;
+                contactError.hidden = false;
+              }
             }
           } finally {
             setSubmitting(false);
