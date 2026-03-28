@@ -9,9 +9,12 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React%2018-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Three.js](https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=three.js&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer%20Motion-0055FF?style=flat-square&logo=framer&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=flat-square&logo=vercel)
 
-> A **dark-mode** single-page portfolio — built with pure HTML, CSS & Vanilla JS.  
+> A **dark-mode** single-page portfolio — built with HTML, CSS, Vanilla JS, React 18, Three.js & Framer Motion (all via CDN — no build step needed).  
 > Showcasing skills, projects, experience, certificates, and achievements.
 
 </div>
@@ -25,6 +28,7 @@
 - [Project Structure](#-project-structure)
 - [Features](#-features)
 - [Tech Stack](#️-tech-stack)
+- [Performance & Accessibility](#-performance--accessibility)
 - [Portfolio Sections](#-portfolio-sections)
   - [Skills](#-skills)
   - [Projects](#-projects)
@@ -39,7 +43,7 @@
 
 ## 📌 About the Project
 
-A fully responsive, dark-mode-only personal portfolio built from scratch using **HTML5**, **CSS3**, and **Vanilla JavaScript** — no frameworks, no build tools required. Every section is crafted to be clean, accessible, and visually engaging with smooth animations, a starfield hero canvas, and scroll-spy navigation.
+A fully responsive, dark-mode-only personal portfolio built with **HTML5**, **CSS3**, **Vanilla JavaScript**, **React 18** (CDN UMD), **Three.js**, and **Framer Motion v10** — no build tools required. Every section is crafted to be clean, accessible, and visually engaging with smooth animations, a Three.js particle starfield hero, Framer Motion–powered project cards, and scroll-spy navigation.
 
 ---
 
@@ -67,14 +71,15 @@ bhavikportfolio/
 | Feature | Details |
 |---|---|
 | 🌙 **Dark Mode Only** | Enforced dark theme via `data-theme="dark"` — no eye-strain |
-| 📱 **Fully Responsive** | Mobile-first layout using CSS Grid & Flexbox (hamburger nav ≤ 900px) |
-| 🌟 **Starfield Hero** | Animated HTML5 Canvas starfield in the hero section |
-| ⌨️ **Typing Animation** | Role text cycles through titles with a blinking cursor |
+| 📱 **Fully Responsive** | Mobile-first layout using CSS Grid & Flexbox (hamburger nav ≤ 1050px) |
+| 🌟 **Three.js Starfield** | Animated Three.js particle starfield powering the hero background |
+| ⌨️ **Typing Animation** | Role text cycles through titles with a blinking cursor (React 18) |
+| 🎞️ **Framer Motion UI** | Hero & Projects sections animated with Framer Motion v10 spring physics |
 | 🔍 **Scroll-Spy Nav** | Active nav link updates automatically as you scroll |
 | 🎨 **Categorised Skills** | Skills grouped by category with custom per-category accent colours |
 | 🃏 **Card Hover Effects** | Cards lift with shadow + glow on hover |
 | ♿ **Accessible** | Semantic HTML, `aria-label` on interactive elements |
-| ⚡ **Zero Dependencies** | Pure HTML/CSS/JS — instant load, no build step |
+| ⚡ **No Build Step** | React, Three.js & Framer Motion loaded via CDN — open in browser instantly |
 
 ---
 
@@ -85,7 +90,21 @@ bhavikportfolio/
 | **Markup** | HTML5 (semantic, accessible) |
 | **Styling** | CSS3 — custom properties, animations, Grid, Flexbox |
 | **Scripting** | Vanilla JavaScript ES6+ |
+| **UI Components** | React 18 (CDN UMD) — Hero & Projects sections |
+| **Animations** | Framer Motion v10 (CDN) — spring & fade transitions |
+| **3D / Canvas** | Three.js (CDN) — particle starfield in the Hero |
+| **Email** | EmailJS browser SDK — contact form |
 | **Hosting** | Vercel |
+
+---
+
+## ⚡ Performance & Accessibility
+
+- **No build step** — all heavy lifting done by CDN-delivered React 18, Three.js, and Framer Motion; just open `index.html`.
+- **Lighthouse-friendly** — semantic HTML5 landmarks (`<header>`, `<main>`, `<section>`, `<footer>`), `aria-label` on every interactive element.
+- **Responsive breakpoints** — full-width stacked layout on mobile (≤ 1050px), hamburger navigation slides in smoothly.
+- **Dark-mode only** — `data-theme="dark"` enforced on `<html>`; colours defined via CSS custom properties for easy theming.
+- **EmailJS** — contact form sends messages directly from the browser with no backend server required.
 
 ---
 
