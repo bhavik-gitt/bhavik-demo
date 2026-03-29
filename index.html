@@ -915,56 +915,8 @@
           </div>
         </div>
 
-        <!-- ── Right: contact form ────────────────────────────────────── -->
-        <div class="contact-form-wrapper">
-          <form id="contactForm" class="contact-form" novalidate>
-            <div class="form-group">
-              <label for="contactName">Name</label>
-              <input type="text" id="contactName" name="from_name" required
-                placeholder="Your name" autocomplete="name" />
-            </div>
 
-            <div class="form-group">
-              <label for="contactEmail">Email</label>
-              <input type="email" id="contactEmail" name="from_email" required
-                placeholder="your@email.com" autocomplete="email" />
-            </div>
 
-            <div class="form-group">
-              <label for="contactMessage">Message</label>
-              <textarea id="contactMessage" name="message" required rows="5"
-                placeholder="Your message…"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary contact-submit-btn" id="contactSubmitBtn">
-              <span class="submit-text">Send Message</span>
-              <svg class="submit-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9l20-7z"/>
-              </svg>
-              <span class="submit-spinner" aria-hidden="true"></span>
-            </button>
-
-            <p class="form-error" id="contactError" role="alert" hidden></p>
-          </form>
-
-          <!-- Success message -->
-          <div class="contact-success" id="contactSuccess" hidden aria-live="polite">
-            <div class="success-checkmark">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="m9 12 2 2 4-4"/>
-              </svg>
-            </div>
-            <h3>Message Sent!</h3>
-            <p>Thanks for reaching out, I’ll get back to you soon. 🚀</p>
-            <button class="btn btn-outline contact-back-btn" id="contactBackBtn" type="button">
-              Send Another
-            </button>
-          </div>
         </div>
       </div>
     </div>
