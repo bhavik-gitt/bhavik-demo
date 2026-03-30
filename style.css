@@ -124,6 +124,21 @@ button {
     to { transform: rotate(360deg); }
 }
 
+@keyframes orbFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%       { transform: translate(-20px, -30px) scale(1.1); }
+}
+
+@keyframes orbFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%       { transform: translate(25px, 20px) scale(0.9); }
+}
+
+@keyframes heroPhotoFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50%       { transform: translateY(-14px) rotate(1deg); }
+}
+
 @keyframes heroBadgeFloat {
     0%, 100% { transform: translateY(0px); }
     50%       { transform: translateY(-6px); }
@@ -155,6 +170,12 @@ button {
 @keyframes neonPulse {
     0%, 100% { box-shadow: 0 0 20px rgba(108,99,255,0.4), 0 0 40px rgba(108,99,255,0.2); }
     50%       { box-shadow: 0 0 30px rgba(108,99,255,0.7), 0 0 60px rgba(108,99,255,0.35); }
+}
+
+@keyframes gradientBorder {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 
@@ -581,13 +602,13 @@ button {
     animation: floatC 26s ease-in-out infinite 6s;
 }
 
-/* ── Hero Content: centered layout ── */
+/* ── Hero Content: two-column layout ── */
 .hero-content {
     max-width: 1100px;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 4rem;
     position: relative;
     z-index: 3;
@@ -595,7 +616,7 @@ button {
 
 .hero-text {
     flex: 1;
-    text-align: center;
+    text-align: left;
 }
 
 /* ── Hero Text Elements ── */
@@ -722,8 +743,135 @@ button {
     display: flex;
     gap: 0.9rem;
     flex-wrap: wrap;
-    justify-content: center;
 }
+
+/* ── Hero Photo ── */
+.hero-photo-wrap {
+    flex-shrink: 0;
+    position: relative;
+    width: 320px;
+    height: 320px;
+}
+
+.hero-photo-ring {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, #6c63ff, #a855f7, #ff6584, #43e97b, #6c63ff);
+    background-size: 400% 400%;
+    animation: gradientBorder 4s ease infinite, heroPhotoFloat 5s ease-in-out infinite;
+    box-shadow: 0 0 40px rgba(108, 99, 255, 0.5), 0 0 80px rgba(168, 85, 247, 0.25);
+    position: relative;
+    z-index: 2;
+}
+
+.hero-photo-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #0d0b2a;
+    border: 3px solid rgba(6, 6, 15, 0.9);
+}
+
+.hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.hero-photo-ring:hover .hero-photo {
+    transform: scale(1.05);
+}
+
+/* Orbiting glow orbs */
+.hero-photo-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hero-photo-orb-1 {
+    width: 80px; height: 80px;
+    background: radial-gradient(circle, rgba(108, 99, 255, 0.8) 0%, transparent 70%);
+    top: -10px; right: -10px;
+    animation: orbFloat1 5s ease-in-out infinite;
+    filter: blur(10px);
+}
+
+.hero-photo-orb-2 {
+    width: 60px; height: 60px;
+    background: radial-gradient(circle, rgba(255, 101, 132, 0.8) 0%, transparent 70%);
+    bottom: 10px; left: -15px;
+    animation: orbFloat2 6s ease-in-out infinite 1s;
+    filter: blur(8px);
+}
+
+.hero-photo-badge {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, rgba(12, 12, 30, 0.95), rgba(20, 15, 50, 0.95));
+    border: 1px solid rgba(108, 99, 255, 0.4);
+    border-radius: 50px;
+    padding: 0.45rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #c4b5fd;
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(10px);
+    z-index: 3;
+    box-shadow: 0 4px 20px rgba(108, 99, 255, 0.3);
+    white-space: nowrap;
+    animation: heroBadgeFloat 3.5s ease-in-out infinite 2s;
+}
+
+/* ── Hero Right Column (photo + socials) ── */
+.hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    flex-shrink: 0;
+}
+
+/* ── Hero Social Links (right side, below photo) ── */
+.hero-socials {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    position: relative;
+    z-index: 4;
+}
+
+.hero-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(108, 99, 255, 0.12);
+    border: 1px solid rgba(108, 99, 255, 0.28);
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: background 0.25s ease, border-color 0.25s ease,
+                color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    flex-shrink: 0;
+}
+
+.hero-social-link:hover {
+    background: rgba(108, 99, 255, 0.28);
+    border-color: rgba(108, 99, 255, 0.6);
+    color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+}
+
 /* ── Scroll hint ── */
 .hero-scroll-hint {
     position: absolute;
@@ -1749,11 +1897,16 @@ button {
 }
 
 @media (max-width: 900px) {
-    /* Hero: center on small screens */
+    /* Hero: stack vertically */
     .hero-content {
+        flex-direction: column-reverse;
         text-align: center;
         gap: 2.5rem;
     }
+    .hero-text { text-align: center; }
+    .hero-buttons { justify-content: center; }
+    .hero-photo-wrap { width: 240px; height: 240px; }
+    .hero-photo-ring { width: 220px; height: 220px; }
 }
 
 @media (max-width: 768px) {
@@ -1797,6 +1950,8 @@ button {
     .hero { padding: 5rem 1.25rem 3rem; }
     .hero::after { display: none; }
     .hero-shape-1, .hero-shape-3 { display: none; }
+    .hero-photo-wrap { width: 200px; height: 200px; }
+    .hero-photo-ring { width: 185px; height: 185px; }
 
     .section { padding: 4rem 1rem; }
 

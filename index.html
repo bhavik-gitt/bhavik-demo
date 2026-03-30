@@ -212,7 +212,24 @@
           <a href="#contact" class="btn btn-outline">Get In Touch</a>
         </div>
       </div>
-    </div>
+
+      <!-- Right column: photo + social links -->
+      <div class="hero-right">
+        <div class="hero-photo-wrap" data-animate-hero="photo">
+          <div class="hero-photo-ring">
+            <div class="hero-photo-inner">
+              <img src="https://github.com/user-attachments/assets/a450d8e6-ff05-4be7-bed2-e74cd9a3d264"
+                   class="hero-photo" alt="Bhavik Ratnottar" loading="eager" />
+            </div>
+          </div>
+          <div class="hero-photo-orb hero-photo-orb-1"></div>
+          <div class="hero-photo-orb hero-photo-orb-2"></div>
+          <div class="hero-photo-badge">
+            <span>&#128187;</span> Full Stack Dev
+          </div>
+        </div>
+
+       
 
     <!-- Scroll indicator -->
     <div class="hero-scroll-hint" aria-hidden="true">
@@ -1044,12 +1061,12 @@
        Hero section staggered entry animations
        ============================================================ */
     function runHeroAnimations() {
-      const delays = { badge: 0, greeting: 100, name: 200, role: 700, subtitle: 900, buttons: 1100 };
+      const delays = { badge: 0, greeting: 100, name: 200, role: 700, subtitle: 900, buttons: 1100, photo: 300, socials: 500 };
       document.querySelectorAll("[data-animate-hero]").forEach(el => {
         const key = el.dataset.animateHero;
         const delay = delays[key] ?? 0;
         el.style.opacity = "0";
-        el.style.transform = "translateY(30px)";
+        el.style.transform = (key === "photo" || key === "socials") ? "translateX(40px)" : "translateY(30px)";
         setTimeout(() => {
           el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
           el.style.opacity = "1";
