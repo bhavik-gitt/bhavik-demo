@@ -1781,7 +1781,8 @@ button {
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.02em;
-    word-break: break-all;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .social-card--github   .social-card-handle { color: rgba(230, 237, 243, 0.65); }
