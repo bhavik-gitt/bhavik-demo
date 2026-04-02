@@ -76,6 +76,9 @@
 </head>
 
 <body>
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
@@ -254,12 +257,18 @@
 
   <!-- About -->
   <section id="about" class="section">
+    <div class="section-deco-orbs" aria-hidden="true">
+      <div class="section-deco-orb section-deco-orb-a"></div>
+      <div class="section-deco-orb section-deco-orb-b"></div>
+      <div class="section-deco-orb section-deco-orb-c"></div>
+    </div>
+    <span class="section-watermark" aria-hidden="true">01</span>
     <div class="container">
       <h2 class="section-title">About Me</h2>
       <p class="section-subtitle">Curious builder who learns fast and ships projects.</p>
 
       <div class="about-card">
-        <div class="about-photo-col">
+        <div class="about-photo-col" data-animate-from="left">
           <div class="about-photo-wrap">
             <img src="https://github.com/user-attachments/assets/a450d8e6-ff05-4be7-bed2-e74cd9a3d264"
                  class="about-photo-img" alt="Bhavik Ratnottar" loading="lazy" />
@@ -283,7 +292,7 @@
           </p>
         </div>
 
-        <div class="about-stats">
+        <div class="about-stats" data-animate-from="right">
           <div class="stat">
             <span class="stat-number">IT</span>
             <span class="stat-label">B.Tech</span>
@@ -303,6 +312,11 @@
 
   <!-- Skills -->
   <section id="skills" class="section section-alt">
+    <div class="section-deco-orbs" aria-hidden="true">
+      <div class="section-deco-orb section-deco-orb-a"></div>
+      <div class="section-deco-orb section-deco-orb-b"></div>
+    </div>
+    <span class="section-watermark" aria-hidden="true">02</span>
     <div class="container">
       <h2 class="section-title">Skills</h2>
       <p class="section-subtitle">Frontend, backend, languages, frameworks, and tools I work with.</p>
@@ -609,6 +623,12 @@
 
   <!-- Projects -->
   <section id="projects" class="section">
+    <div class="section-deco-orbs" aria-hidden="true">
+      <div class="section-deco-orb section-deco-orb-a"></div>
+      <div class="section-deco-orb section-deco-orb-b"></div>
+      <div class="section-deco-orb section-deco-orb-c"></div>
+    </div>
+    <span class="section-watermark" aria-hidden="true">03</span>
     <div class="container">
       <h2 class="section-title">Projects</h2>
       <p class="section-subtitle">All projects — deployed and in progress.</p>
@@ -732,6 +752,11 @@
 
   <!-- Education -->
   <section id="education" class="section section-alt">
+    <div class="section-deco-orbs" aria-hidden="true">
+      <div class="section-deco-orb section-deco-orb-a"></div>
+      <div class="section-deco-orb section-deco-orb-b"></div>
+    </div>
+    <span class="section-watermark" aria-hidden="true">04</span>
     <div class="container">
       <h2 class="section-title">Education</h2>
       <p class="section-subtitle">My academic journey.</p>
@@ -760,6 +785,11 @@
 
   <!-- Experience -->
   <section id="experience" class="section">
+    <div class="section-deco-orbs" aria-hidden="true">
+      <div class="section-deco-orb section-deco-orb-a"></div>
+      <div class="section-deco-orb section-deco-orb-b"></div>
+    </div>
+    <span class="section-watermark" aria-hidden="true">05</span>
     <div class="container">
       <h2 class="section-title">Experience</h2>
       <p class="section-subtitle">Internships and hands-on learning.</p>
@@ -788,8 +818,13 @@
 
   <!-- Certificates -->
   <section id="certificates" class="section section-alt">
+    <div class="section-deco-orbs" aria-hidden="true">
+      <div class="section-deco-orb section-deco-orb-a"></div>
+      <div class="section-deco-orb section-deco-orb-b"></div>
+    </div>
+    <span class="section-watermark" aria-hidden="true">06</span>
     <div class="container">
-      <h2 class="section-title">Certificates & Workshops</h2>
+      <h2 class="section-title">Certificates &amp; Workshops</h2>
       <p class="section-subtitle">Hands-on programs, simulations, and workshops.</p>
 
       <div class="projects-grid">
@@ -864,6 +899,11 @@
 
   <!-- Achievements -->
   <section id="achievements" class="section">
+    <div class="section-deco-orbs" aria-hidden="true">
+      <div class="section-deco-orb section-deco-orb-a"></div>
+      <div class="section-deco-orb section-deco-orb-b"></div>
+    </div>
+    <span class="section-watermark" aria-hidden="true">07</span>
     <div class="container">
       <h2 class="section-title">Achievements</h2>
       <p class="section-subtitle">Hackathons and growth milestones.</p>
@@ -895,6 +935,7 @@
   <!-- Contact -->
   <section id="contact" class="section section-alt">
     <div class="container contact-container">
+      <span class="section-watermark" aria-hidden="true">08</span>
 
       <!-- Decorative background orbs -->
       <div class="contact-orb contact-orb-1" aria-hidden="true"></div>
@@ -1014,6 +1055,13 @@
   <footer class="footer">
     <p>Made with ❤️ by <strong>Bhavik Ratnottar</strong> &copy; 2026</p>
   </footer>
+
+  <!-- Scroll-to-top button -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top" type="button">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
   <script>
     /* ============================================================
@@ -1234,6 +1282,127 @@
         });
       }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
       document.querySelectorAll('[data-animate]').forEach(el => revealObserver.observe(el));
+
+      /* ── Directional scroll-reveal: observe [data-animate-from] elements ── */
+      document.querySelectorAll('[data-animate-from]').forEach(el => {
+        if (!el.dataset.revealDelay) el.dataset.revealDelay = '0';
+        revealObserver.observe(el);
+      });
+
+      /* ── Section title & subtitle animated reveals ── */
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReducedMotion) {
+        const headingObs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const isSubtitle = el.classList.contains('section-subtitle');
+            const delay = isSubtitle ? 180 : 0;
+            el.classList.add(isSubtitle ? 'anim-sub-hidden' : 'anim-title-hidden');
+            setTimeout(() => {
+              const dur = isSubtitle ? '0.75s' : '0.95s';
+              el.style.transition = `opacity ${dur} cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform ${dur} cubic-bezier(0.22,1,0.36,1) ${delay}ms, filter ${dur} ease ${delay}ms`;
+              el.classList.remove(isSubtitle ? 'anim-sub-hidden' : 'anim-title-hidden');
+              el.classList.add(isSubtitle ? 'anim-sub-visible' : 'anim-title-visible');
+              setTimeout(() => { el.style.transition = ''; }, 1100 + delay);
+            }, 16);
+            headingObs.unobserve(el);
+          });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.section-title, .section-subtitle').forEach(el => {
+          el.classList.add(el.classList.contains('section-subtitle') ? 'anim-sub-hidden' : 'anim-title-hidden');
+          headingObs.observe(el);
+        });
+      }
+
+      /* ── Cursor glow ── */
+      const cursorGlow = document.getElementById('cursorGlow');
+      if (cursorGlow && window.matchMedia('(pointer: fine)').matches && !prefersReducedMotion) {
+        let cx = -300, cy = -300, tx = -300, ty = -300;
+        (function animateCursor() {
+          cx += (tx - cx) * 0.1;
+          cy += (ty - cy) * 0.1;
+          cursorGlow.style.left = cx + 'px';
+          cursorGlow.style.top  = cy + 'px';
+          requestAnimationFrame(animateCursor);
+        })();
+        window.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+      } else if (cursorGlow) {
+        cursorGlow.style.display = 'none';
+      }
+
+      /* ── Scroll-to-top button ── */
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          scrollTopBtn.classList.toggle('is-visible', window.scrollY > 400);
+        }, { passive: true });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      /* ── 3D card tilt on mouse move ── */
+      if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
+        const tiltCards = document.querySelectorAll('.skill-card, .project-card, .social-card');
+        tiltCards.forEach(card => {
+          card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top)  / rect.height;
+            const rotX = (y - 0.5) * -14;
+            const rotY = (x - 0.5) *  14;
+            card.style.transform = `perspective(750px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-8px) scale(1.02)`;
+            card.style.transition = 'transform 0.08s linear';
+          }, { passive: true });
+          card.addEventListener('mouseleave', () => {
+            card.style.transition = 'transform 0.55s cubic-bezier(0.22,1,0.36,1), box-shadow 0.55s ease, border-color 0.3s ease';
+            card.style.transform = '';
+            setTimeout(() => { card.style.transition = ''; }, 560);
+          });
+        });
+      }
+
+      /* ── Button ripple effect ── */
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const rect = this.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'btn-ripple';
+          ripple.style.left = (e.clientX - rect.left) + 'px';
+          ripple.style.top  = (e.clientY - rect.top)  + 'px';
+          this.appendChild(ripple);
+          ripple.addEventListener('animationend', () => ripple.remove());
+        });
+      });
+
+      /* ── Count-up animation for numeric stat numbers ── */
+      document.querySelectorAll('.stat-number').forEach(el => {
+        const rawText = el.textContent.trim();
+        const num = parseFloat(rawText.replace(/[^0-9.]/g, ''));
+        /* Skip non-numeric or trivially small values that look odd when counting */
+        if (isNaN(num) || num < 2) return;
+        const suffix = rawText.replace(/[0-9.]/g, '');
+        let started = false;
+        const ctObs = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting || started) return;
+            started = true;
+            let current = 0;
+            const COUNTUP_STEPS = 48;   /* frames per animation (~1.35s at 28ms/step) */
+            const COUNTUP_INTERVAL_MS = 28; /* ~35fps feels smooth without heavy CPU */
+            const increment = num / COUNTUP_STEPS;
+            const timer = setInterval(() => {
+              current = Math.min(current + increment, num);
+              el.textContent = (Number.isInteger(num) ? Math.round(current) : current.toFixed(1)) + suffix;
+              if (current >= num) clearInterval(timer);
+            }, COUNTUP_INTERVAL_MS);
+            ctObs.disconnect();
+          });
+        }, { threshold: 0.6 });
+        ctObs.observe(el);
+      });
     });
   </script>
 </body>
