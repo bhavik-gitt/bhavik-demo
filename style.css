@@ -2053,3 +2053,358 @@ button {
         justify-content: center;
     }
 }
+
+/* ============================================================
+   ADVANCED 3D ANIMATIONS & DYNAMIC VISUAL EFFECTS
+   ============================================================ */
+
+/* ── Page Intro Fade ── */
+.page-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: var(--bg-light);
+    pointer-events: none;
+    animation: pageIntroFade 0.7s ease 0.15s both;
+}
+
+@keyframes pageIntroFade {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* ── Custom Cursor Glow ── */
+.cursor-glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at center,
+        rgba(108, 99, 255, 0.09) 0%,
+        rgba(168, 85, 247, 0.05) 35%,
+        transparent 65%
+    );
+    pointer-events: none;
+    z-index: 9990;
+    left: -1000px;
+    top: -1000px;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+    will-change: left, top;
+    transition: width 0.35s ease, height 0.35s ease, opacity 0.35s ease;
+}
+
+.cursor-glow--active {
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(
+        circle at center,
+        rgba(108, 99, 255, 0.14) 0%,
+        rgba(168, 85, 247, 0.08) 35%,
+        transparent 65%
+    );
+}
+
+/* ── Scroll to Top Button ── */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(108, 99, 255, 0.5);
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+    transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    pointer-events: none;
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.scroll-top-btn:hover {
+    transform: translateY(-4px) scale(1.12);
+    box-shadow: 0 8px 32px rgba(108, 99, 255, 0.7);
+}
+
+/* ── 3D Perspective on card grids ── */
+.skills-grid,
+.projects-grid,
+.social-grid {
+    perspective: 1200px;
+    perspective-origin: 50% 0%;
+}
+
+/* ── Enhanced scroll-reveal (3D entry with rotateX) ── */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(36px) rotateX(14deg);
+    transform-origin: center bottom;
+    will-change: transform, opacity;
+}
+
+[data-animate].visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+}
+
+/* ── 3D tilt preserve on cards ── */
+.skill-card,
+.project-card,
+.social-card {
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+
+/* ── Hero 3D Wireframe Geometric Shapes ── */
+.hero-3d-shapes {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.geo-wrap {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+/* Positions & individual animation params */
+.geo-wrap.geo-1  { top: 10%; right:  7%; --gw: 44px; animation: geoFloat1 9s  ease-in-out infinite,       geoSpin3D 18s linear infinite; }
+.geo-wrap.geo-2  { top: 22%; left:   5%; --gw: 62px; animation: geoFloat2 11s ease-in-out infinite -2s,   geoOrbit3D 14s linear infinite; }
+.geo-wrap.geo-3  { top: 62%; right: 13%; --gw: 38px; animation: geoFloat1 13s ease-in-out infinite -5s,   geoSpin3D 22s linear infinite reverse; }
+.geo-wrap.geo-4  { top: 74%; left:  10%; --gw: 32px; animation: geoFloat2  8s ease-in-out infinite -3s,   geoSpin3D 16s linear infinite; }
+.geo-wrap.geo-5  { top: 40%; left:   2%; --gw: 10px; animation: geoFloat1  7s ease-in-out infinite -1s,   geoOrbit3D 10s linear infinite reverse; }
+.geo-wrap.geo-6  { top: 16%; right: 23%; --gw:  8px; animation: geoFloat2  6s ease-in-out infinite -4s,   geoOrbit3D  8s linear infinite; }
+.geo-wrap.geo-7  { top: 84%; right: 28%; --gw: 48px; animation: geoFloat1 12s ease-in-out infinite -6s,   geoSpin3D 20s linear infinite; }
+.geo-wrap.geo-8  { top: 50%; right:  3%; --gw: 28px; animation: geoFloat2 10s ease-in-out infinite -8s,   geoSpin3D 15s linear infinite reverse; }
+
+/* Wireframe cube */
+.geo-cube {
+    width: var(--gw, 44px);
+    height: var(--gw, 44px);
+    border: 1.5px solid rgba(108, 99, 255, 0.45);
+    position: relative;
+    opacity: 0.55;
+}
+
+.geo-cube::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px dashed rgba(168, 85, 247, 0.35);
+    animation: cubeInnerPulse 4s ease-in-out infinite;
+}
+
+@keyframes cubeInnerPulse {
+    0%, 100% { transform: rotate(0deg) scale(1);    opacity: 0.4; }
+    50%       { transform: rotate(45deg) scale(0.7); opacity: 1; }
+}
+
+/* Orbit ring */
+.geo-ring {
+    width: var(--gw, 62px);
+    height: var(--gw, 62px);
+    border-radius: 50%;
+    border: 1.5px dashed rgba(168, 85, 247, 0.5);
+    position: relative;
+    opacity: 0.6;
+}
+
+.geo-ring::after {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: rgba(168, 85, 247, 0.9);
+    border-radius: 50%;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.9);
+}
+
+/* Wireframe diamond */
+.geo-diamond {
+    width: var(--gw, 36px);
+    height: var(--gw, 36px);
+    border: 1.5px solid rgba(67, 233, 123, 0.5);
+    transform: rotate(45deg);
+    opacity: 0.55;
+}
+
+/* Glowing dot */
+.geo-dot {
+    width: var(--gw, 8px);
+    height: var(--gw, 8px);
+    background: rgba(108, 99, 255, 0.85);
+    border-radius: 50%;
+    box-shadow: 0 0 14px rgba(108, 99, 255, 0.8), 0 0 28px rgba(168, 85, 247, 0.4);
+    opacity: 0.8;
+}
+
+@keyframes geoFloat1 {
+    0%, 100% { transform: translateY(0)     translateX(0); }
+    33%       { transform: translateY(-26px) translateX(9px); }
+    66%       { transform: translateY(14px)  translateX(-7px); }
+}
+
+@keyframes geoFloat2 {
+    0%, 100% { transform: translateY(0)     translateX(0); }
+    33%       { transform: translateY(22px)  translateX(-11px); }
+    66%       { transform: translateY(-18px) translateX(9px); }
+}
+
+@keyframes geoSpin3D {
+    0%   { transform: rotateX(0deg)   rotateY(0deg)   rotateZ(0deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+
+@keyframes geoOrbit3D {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ── Section decorative orbs ── */
+.section-deco-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(72px);
+    z-index: 0;
+    opacity: 0.06;
+}
+
+.section-deco-orb-a {
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    top: -80px;
+    right: -80px;
+    animation: sectionOrbDrift 12s ease-in-out infinite;
+}
+
+.section-deco-orb-b {
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
+    bottom: -60px;
+    left: -60px;
+    animation: sectionOrbDrift 16s ease-in-out infinite reverse;
+    animation-delay: -6s;
+}
+
+@keyframes sectionOrbDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%       { transform: translate(24px, -34px) scale(1.07); }
+    66%       { transform: translate(-16px, 16px) scale(0.94); }
+}
+
+/* ── Section title 3D reveal animation ── */
+@keyframes titleReveal3D {
+    from {
+        opacity: 0;
+        transform: perspective(500px) rotateX(-22deg) translateY(22px);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: perspective(500px) rotateX(0deg) translateY(0);
+        filter: blur(0);
+    }
+}
+
+.section-title.title-anim-done {
+    animation: titleReveal3D 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Skill icon 3D flip on hover ── */
+.skill-card:hover .skill-icon {
+    animation: iconFlip3D 0.6s ease forwards !important;
+}
+
+@keyframes iconFlip3D {
+    0%   { transform: rotateY(0deg)   scale(1);   filter: none; }
+    45%  { transform: rotateY(180deg) scale(1.35); filter: drop-shadow(0 0 10px rgba(108, 99, 255, 0.6)); }
+    100% { transform: rotateY(360deg) scale(1);   filter: none; }
+}
+
+/* ── Button ripple effect ── */
+.btn {
+    overflow: hidden;
+}
+
+.btn-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    width: 40px;
+    height: 40px;
+    transform: scale(0);
+    pointer-events: none;
+    animation: rippleAnim 0.65s ease-out forwards;
+    z-index: 0;
+}
+
+@keyframes rippleAnim {
+    to { transform: scale(7); opacity: 0; }
+}
+
+/* ── About card dynamic glow ── */
+@keyframes aboutBorderGlow {
+    0%, 100% { box-shadow: var(--shadow); }
+    50%       { box-shadow: 0 0 40px rgba(108, 99, 255, 0.2), 0 0 80px rgba(168, 85, 247, 0.1), var(--shadow); }
+}
+
+.about-card {
+    animation: aboutBorderGlow 5s ease-in-out 2s infinite;
+}
+
+/* ── Enhanced card hover glow ── */
+.skill-card:hover,
+.project-card:hover,
+.social-card:hover {
+    box-shadow: var(--shadow-hover), 0 0 0 1px rgba(108, 99, 255, 0.12), 0 0 60px rgba(108, 99, 255, 0.08);
+}
+
+/* ── Hero parallax reset on mobile ── */
+@media (max-width: 768px) {
+    .cursor-glow    { display: none; }
+    .hero-3d-shapes { display: none; }
+    .section-deco-orb { opacity: 0.04; }
+}
+
+/* ── Reduce motion ── */
+@media (prefers-reduced-motion: reduce) {
+    .cursor-glow,
+    .hero-3d-shapes,
+    .page-intro,
+    .section-deco-orb,
+    .about-card { animation: none !important; }
+
+    [data-animate] {
+        transform: translateY(32px) !important;
+    }
+
+    [data-animate].visible {
+        transform: translateY(0) !important;
+    }
+
+    .section-title.title-anim-done {
+        animation: none !important;
+        opacity: 1;
+    }
+}

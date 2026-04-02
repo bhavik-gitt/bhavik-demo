@@ -76,6 +76,9 @@
 </head>
 
 <body>
+  <!-- Page intro fade overlay -->
+  <div class="page-intro" id="pageIntro" aria-hidden="true"></div>
+
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
@@ -206,6 +209,18 @@
       <div class="hero-shape hero-shape-3"></div>
       <div class="hero-shape hero-shape-4"></div>
       <div class="hero-shape hero-shape-5"></div>
+    </div>
+
+    <!-- 3D Wireframe geometric shapes -->
+    <div class="hero-3d-shapes" aria-hidden="true">
+      <div class="geo-wrap geo-1"><div class="geo-cube"></div></div>
+      <div class="geo-wrap geo-2"><div class="geo-ring"></div></div>
+      <div class="geo-wrap geo-3"><div class="geo-diamond"></div></div>
+      <div class="geo-wrap geo-4"><div class="geo-cube"></div></div>
+      <div class="geo-wrap geo-5"><div class="geo-dot"></div></div>
+      <div class="geo-wrap geo-6"><div class="geo-dot"></div></div>
+      <div class="geo-wrap geo-7"><div class="geo-ring"></div></div>
+      <div class="geo-wrap geo-8"><div class="geo-diamond"></div></div>
     </div>
 
     <div class="hero-content">
@@ -1015,6 +1030,13 @@
     <p>Made with ❤️ by <strong>Bhavik Ratnottar</strong> &copy; 2026</p>
   </footer>
 
+  <!-- Scroll to Top -->
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top" type="button">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
   <script>
     /* ============================================================
        Dark mode — always dark, no toggle
@@ -1100,13 +1122,13 @@
     }
 
     /* ============================================================
-       Starfield canvas
+       Starfield canvas (with shooting stars)
        ============================================================ */
     function initStarfield() {
       const canvas = document.getElementById("heroStars");
       if (!canvas) return;
       const ctx = canvas.getContext("2d");
-      let W, H, stars = [];
+      let W, H, stars = [], shooters = [];
 
       function resize() {
         W = canvas.width = canvas.offsetWidth;
@@ -1127,8 +1149,20 @@
         }
       }
 
+      function spawnShooter() {
+        shooters.push({
+          x: Math.random() * W,
+          y: Math.random() * H * 0.5,
+          len: Math.random() * 120 + 80,
+          speed: Math.random() * 8 + 6,
+          alpha: 1,
+          angle: Math.PI / 4 + (Math.random() - 0.5) * 0.3
+        });
+      }
+
       function draw() {
         ctx.clearRect(0, 0, W, H);
+        /* Regular stars */
         stars.forEach(s => {
           s.twinkle += 0.018;
           const a = s.alpha * (0.6 + 0.4 * Math.sin(s.twinkle));
@@ -1139,6 +1173,24 @@
           s.y -= s.speed;
           if (s.y < -2) { s.y = H + 2; s.x = Math.random() * W; }
         });
+        /* Shooting stars */
+        shooters = shooters.filter(s => s.alpha > 0.02);
+        shooters.forEach(s => {
+          const dx = Math.cos(s.angle) * s.speed;
+          const dy = Math.sin(s.angle) * s.speed;
+          const grad = ctx.createLinearGradient(s.x, s.y, s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
+          grad.addColorStop(0, `rgba(220,210,255,${s.alpha})`);
+          grad.addColorStop(1, `rgba(168,85,247,0)`);
+          ctx.beginPath();
+          ctx.moveTo(s.x, s.y);
+          ctx.lineTo(s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+          s.x += dx;
+          s.y += dy;
+          s.alpha -= 0.018;
+        });
         requestAnimationFrame(draw);
       }
 
@@ -1146,6 +1198,10 @@
       const STAR_COUNT = 180;
       createStars(STAR_COUNT);
       draw();
+      /* Spawn a shooting star every 3-7 seconds */
+      (function scheduleShooter() {
+        setTimeout(() => { spawnShooter(); scheduleShooter(); }, 3000 + Math.random() * 4000);
+      })();
       window.addEventListener("resize", () => { resize(); createStars(STAR_COUNT); }, { passive: true });
     }
 
@@ -1234,6 +1290,121 @@
         });
       }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
       document.querySelectorAll('[data-animate]').forEach(el => revealObserver.observe(el));
+
+      /* ── Section title 3D reveal ─────────────────────────────────────────── */
+      const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('title-anim-done');
+          titleObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.3 });
+      document.querySelectorAll('.section-title').forEach(el => titleObserver.observe(el));
+
+      /* ── Section decorative orbs ──────────────────────────────────────────── */
+      document.querySelectorAll('.section').forEach(section => {
+        const orbA = document.createElement('div');
+        orbA.className = 'section-deco-orb section-deco-orb-a';
+        orbA.setAttribute('aria-hidden', 'true');
+        const orbB = document.createElement('div');
+        orbB.className = 'section-deco-orb section-deco-orb-b';
+        orbB.setAttribute('aria-hidden', 'true');
+        section.appendChild(orbA);
+        section.appendChild(orbB);
+      });
+
+      /* ── 3D Card Tilt ─────────────────────────────────────────────────────── */
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
+      if (!isTouch) {
+        document.querySelectorAll('.skill-card, .project-card, .social-card').forEach(card => {
+          let hovering = false;
+          card.addEventListener('mouseenter', () => {
+            hovering = true;
+            card.style.transition = 'box-shadow 0.08s linear';
+          });
+          card.addEventListener('mousemove', (e) => {
+            if (!hovering) return;
+            const r = card.getBoundingClientRect();
+            const x = e.clientX - r.left, y = e.clientY - r.top;
+            const cx = r.width / 2, cy = r.height / 2;
+            const rotY = ((x - cx) / cx) * 10;
+            const rotX = -((y - cy) / cy) * 7;
+            card.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-8px) translateZ(10px)`;
+            card.style.boxShadow = `${-rotY * 1.5}px ${rotX * 1.5}px 36px rgba(108,99,255,0.28)`;
+          });
+          card.addEventListener('mouseleave', () => {
+            hovering = false;
+            card.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease';
+            card.style.transform = '';
+            card.style.boxShadow = '';
+            setTimeout(() => { if (!hovering) { card.style.transition = ''; } }, 520);
+          });
+        });
+      }
+
+      /* ── Custom Cursor Glow ───────────────────────────────────────────────── */
+      if (!isTouch) {
+        const glow = document.createElement('div');
+        glow.className = 'cursor-glow';
+        document.body.appendChild(glow);
+        let tX = -1000, tY = -1000, cX = -1000, cY = -1000;
+        document.addEventListener('mousemove', e => { tX = e.clientX; tY = e.clientY; }, { passive: true });
+        /* Expand glow near interactive elements */
+        const hoverEls = document.querySelectorAll('.btn, .skill-card, .project-card, .social-card, .nav-links a');
+        hoverEls.forEach(el => {
+          el.addEventListener('mouseenter', () => glow.classList.add('cursor-glow--active'));
+          el.addEventListener('mouseleave', () => glow.classList.remove('cursor-glow--active'));
+        });
+        (function glowFrame() {
+          cX += (tX - cX) * 0.1;
+          cY += (tY - cY) * 0.1;
+          glow.style.left = cX + 'px';
+          glow.style.top  = cY + 'px';
+          requestAnimationFrame(glowFrame);
+        })();
+      }
+
+      /* ── Button Ripple ────────────────────────────────────────────────────── */
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const r = btn.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'btn-ripple';
+          ripple.style.left = (e.clientX - r.left - 20) + 'px';
+          ripple.style.top  = (e.clientY - r.top  - 20) + 'px';
+          btn.appendChild(ripple);
+          ripple.addEventListener('animationend', () => ripple.remove());
+        });
+      });
+
+      /* ── Scroll to Top ────────────────────────────────────────────────────── */
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+      if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+          scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+        }, { passive: true });
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      /* ── Hero mouse parallax on blobs ────────────────────────────────────── */
+      if (!isTouch) {
+        const heroSection = document.querySelector('.hero');
+        const shapes = heroSection ? heroSection.querySelectorAll('.hero-shape') : [];
+        heroSection && heroSection.addEventListener('mousemove', (e) => {
+          const r = heroSection.getBoundingClientRect();
+          const mx = (e.clientX - r.left) / r.width  - 0.5;
+          const my = (e.clientY - r.top)  / r.height - 0.5;
+          shapes.forEach((s, i) => {
+            const depth = (i + 1) * 0.4;
+            s.style.transform = `translate(${mx * depth * 28}px, ${my * depth * 20}px)`;
+          });
+        }, { passive: true });
+        heroSection && heroSection.addEventListener('mouseleave', () => {
+          shapes.forEach(s => { s.style.transform = ''; });
+        });
+      }
     });
   </script>
 </body>
