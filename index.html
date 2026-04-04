@@ -177,23 +177,28 @@
     </a>
 
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about" data-section="about"><span class="nav-link-icon">👤</span>About</a></li>
-      <li><a href="#skills" data-section="skills"><span class="nav-link-icon">⚡</span>Skills</a></li>
-      <li><a href="#projects" data-section="projects"><span class="nav-link-icon">🚀</span>Projects</a></li>
-      <li><a href="#education" data-section="education"><span class="nav-link-icon">🎓</span>Education</a></li>
-      <li><a href="#experience" data-section="experience"><span class="nav-link-icon">💼</span>Experience</a></li>
-      <li><a href="#certificates" data-section="certificates"><span class="nav-link-icon">📜</span>Certificates</a></li>
-      <li><a href="#achievements" data-section="achievements"><span class="nav-link-icon">🏆</span>Achievements</a></li>
-      <li><a href="#contact" data-section="contact"><span class="nav-link-icon">✉️</span>Contact</a></li>
+      <li><a href="#about" data-section="about"><span class="nav-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>About</a></li>
+      <li><a href="#skills" data-section="skills"><span class="nav-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Skills</a></li>
+      <li><a href="#projects" data-section="projects"><span class="nav-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></span>Projects</a></li>
+      <li><a href="#education" data-section="education"><span class="nav-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>Education</a></li>
+      <li><a href="#experience" data-section="experience"><span class="nav-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>Experience</a></li>
+      <li><a href="#certificates" data-section="certificates"><span class="nav-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>Certificates</a></li>
+      <li><a href="#achievements" data-section="achievements"><span class="nav-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>Achievements</a></li>
+      <li><a href="#contact" data-section="contact"><span class="nav-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>Contact</a></li>
     </ul>
 
     <div class="nav-actions">
+      <a href="#contact" class="nav-hire-btn">
+        <span class="nav-hire-pulse" aria-hidden="true"></span>
+        Hire Me
+      </a>
       <button class="hamburger" id="hamburger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
         <span></span>
         <span></span>
         <span></span>
       </button>
     </div>
+    <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
   </nav>
   <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
@@ -1252,6 +1257,43 @@
       const links = Array.from(document.querySelectorAll(".nav-links a[data-section]"));
       const sections = links.map(l => document.getElementById(l.dataset.section)).filter(Boolean);
 
+      /* ── Sliding nav indicator ──────────────────────────────────────────────── */
+      const navIndicator = document.getElementById("navIndicator");
+      const navEl = document.getElementById("navbar");
+
+      function moveIndicatorTo(el) {
+        if (!navIndicator || !navEl || !el) return;
+        if (window.innerWidth <= 1050) return;
+        const navRect = navEl.getBoundingClientRect();
+        const elRect  = el.getBoundingClientRect();
+        navIndicator.style.left   = (elRect.left - navRect.left) + "px";
+        navIndicator.style.top    = (elRect.top  - navRect.top)  + "px";
+        navIndicator.style.width  = elRect.width  + "px";
+        navIndicator.style.height = elRect.height + "px";
+        navIndicator.style.opacity = "1";
+      }
+
+      function hideIndicator() {
+        if (navIndicator) navIndicator.style.opacity = "0";
+      }
+
+      if (navLinks && navIndicator) {
+        navLinks.querySelectorAll("a").forEach(a => {
+          a.addEventListener("mouseenter", () => moveIndicatorTo(a));
+          a.addEventListener("mouseleave", () => {
+            const active = navLinks.querySelector("a.active");
+            if (active) moveIndicatorTo(active);
+            else hideIndicator();
+          });
+        });
+        // Re-position on window resize
+        window.addEventListener("resize", () => {
+          const active = navLinks.querySelector("a.active");
+          if (active) moveIndicatorTo(active);
+          else hideIndicator();
+        }, { passive: true });
+      }
+
       const observer = new IntersectionObserver((entries) => {
         const intersecting = entries.filter(e => e.isIntersecting);
         if (!intersecting.length) return;
@@ -1261,7 +1303,10 @@
         );
         links.forEach(a => a.classList.remove("active"));
         const active = links.find(a => a.dataset.section === best.target.id);
-        if (active) active.classList.add("active");
+        if (active) {
+          active.classList.add("active");
+          moveIndicatorTo(active);
+        }
       }, { rootMargin: "-45% 0px -45% 0px", threshold: 0.01 });
       sections.forEach(sec => observer.observe(sec));
 
