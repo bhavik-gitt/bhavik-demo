@@ -1938,10 +1938,6 @@ img.skill-icon {
 /* ===========================
    Footer — redesigned
    =========================== */
-@keyframes footerOrbDrift {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50%       { transform: translateY(-18px) scale(1.08); }
-}
 @keyframes heartBeat {
     0%, 100% { transform: scale(1); }
     15%       { transform: scale(1.35); }
