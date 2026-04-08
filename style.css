@@ -162,10 +162,6 @@ button {
     50%       { opacity: 1; }
 }
 
-@keyframes scrollWheel {
-    0%   { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(12px); }
-}
 
 @keyframes neonPulse {
     0%, 100% { box-shadow: 0 0 20px rgba(108,99,255,0.4), 0 0 40px rgba(108,99,255,0.2); }
@@ -951,31 +947,6 @@ button {
 }
 
 /* ── Scroll hint ── */
-.hero-scroll-hint {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-}
-
-.scroll-mouse {
-    width: 24px;
-    height: 38px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    padding-top: 6px;
-}
-
-.scroll-wheel {
-    width: 4px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 2px;
-    animation: scrollWheel 1.6s ease-in-out infinite;
-}
 
 
 /* ===========================
