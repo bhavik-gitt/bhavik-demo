@@ -969,22 +969,39 @@ button {
     background: #6c63ff;
     z-index: 3;
     pointer-events: none;
-    animation: heroDotPulse 2.5s ease-in-out infinite;
 }
 
-.hero-photo-dot-top    { top:  -5px; left: 50%; transform: translateX(-50%); background: #60efff; box-shadow: 0 0 10px 4px rgba(96,239,255,0.7); animation-delay: 0s;     }
-.hero-photo-dot-right  { top: 50%; right: -5px; transform: translateY(-50%); background: #a855f7; box-shadow: 0 0 10px 4px rgba(168,85,247,0.7);  animation-delay: 0.6s;   }
-.hero-photo-dot-bottom { bottom: -5px; left: 50%; transform: translateX(-50%); background: #ff6584; box-shadow: 0 0 10px 4px rgba(255,101,132,0.7); animation-delay: 1.2s; }
-.hero-photo-dot-left   { top: 50%; left: -5px; transform: translateY(-50%); background: #43e97b; box-shadow: 0 0 10px 4px rgba(67,233,123,0.7);   animation-delay: 1.8s;  }
-
-@keyframes heroDotPulse {
-    0%, 100% { transform: translateX(-50%) scale(1);    opacity: 1; }
-    50%       { transform: translateX(-50%) scale(1.6);  opacity: 0.5; }
+.hero-photo-dot-top {
+    top: -5px; left: 50%;
+    background: #60efff;
+    box-shadow: 0 0 10px 4px rgba(96,239,255,0.7);
+    transform: translateX(-50%);
+    animation: heroDotPulseX 2.5s ease-in-out infinite 0s;
 }
-/* Axis-correct transforms for right/bottom/left dots */
-.hero-photo-dot-right:is(.hero-photo-dot)  { animation-name: heroDotPulseY; }
-.hero-photo-dot-left:is(.hero-photo-dot)   { animation-name: heroDotPulseY; }
-.hero-photo-dot-bottom:is(.hero-photo-dot) { animation-name: heroDotPulseX; }
+
+.hero-photo-dot-right {
+    top: 50%; right: -5px;
+    background: #a855f7;
+    box-shadow: 0 0 10px 4px rgba(168,85,247,0.7);
+    transform: translateY(-50%);
+    animation: heroDotPulseY 2.5s ease-in-out infinite 0.6s;
+}
+
+.hero-photo-dot-bottom {
+    bottom: -5px; left: 50%;
+    background: #ff6584;
+    box-shadow: 0 0 10px 4px rgba(255,101,132,0.7);
+    transform: translateX(-50%);
+    animation: heroDotPulseX 2.5s ease-in-out infinite 1.2s;
+}
+
+.hero-photo-dot-left {
+    top: 50%; left: -5px;
+    background: #43e97b;
+    box-shadow: 0 0 10px 4px rgba(67,233,123,0.7);
+    transform: translateY(-50%);
+    animation: heroDotPulseY 2.5s ease-in-out infinite 1.8s;
+}
 
 @keyframes heroDotPulseY {
     0%, 100% { transform: translateY(-50%) scale(1);   opacity: 1; }
