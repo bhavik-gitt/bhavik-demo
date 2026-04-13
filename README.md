@@ -4,11 +4,11 @@
 
 <br/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Space+Grotesk&size=22&duration=3000&pause=800&color=6C63FF&center=true&vCenter=true&multiline=false&width=600&lines=Building+beautiful+%26+blazing-fast+web+apps;Full+Stack+%7C+AI+%7C+Open+Source+Contributor;Zero+Build+Step+%E2%80%A2+Pure+HTML+%2F+CSS+%2F+JS)](https://bhavikportfolio.netlify.app)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Space+Grotesk&size=22&duration=3000&pause=800&color=6C63FF&center=true&vCenter=true&multiline=false&width=600&lines=Building+beautiful+%26+blazing-fast+web+apps;Full+Stack+%7C+AI+%7C+Open+Source+Contributor;Zero+Build+Step+%E2%80%A2+Pure+HTML+%2F+CSS+%2F+JS)](bhavik-demo.vercel.app)
 
 <br/>
 
-[![Live Demo](https://img.shields.io/badge/🌐%20Live%20Demo-bhavikportfolio.netlify.app-6c63ff?style=for-the-badge&logoColor=white)](https://bhavikportfolio.netlify.app)&nbsp;
+[![Live Demo](https://img.shields.io/badge/🌐%20Live%20Demo-bhavikportfolio.netlify.app-6c63ff?style=for-the-badge&logoColor=white)](bhavik-demo.vercel.app)&nbsp;
 [![GitHub](https://img.shields.io/badge/GitHub-bhavik--gitt-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/bhavik-gitt)&nbsp;
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Bhavik%20Ratnottar-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/bhavik-ratnottar-b9307b286/)
 
@@ -81,9 +81,9 @@ Every section is crafted to be clean, accessible, and visually engaging:
 
 <div align="center">
 
-### 🔗 [https://bhavikportfolio.netlify.app](https://bhavikportfolio.netlify.app)
+### 🔗 [bhavik-demo.vercel.app](bhavik-demo.vercel.app)
 
-[![Deploy Status](https://api.netlify.com/api/v1/badges/placeholder/deploy-status)](https://bhavikportfolio.netlify.app)
+[![Deploy Status](https://api.netlify.com/api/v1/badges/placeholder/deploy-status)](bhavik-demo.vercel.app)
 
 > ⚡ Auto-deployed from the `main` branch via **Netlify CI/CD**
 
@@ -260,7 +260,7 @@ bhavikportfolio/
 
 | # | Project | Tech Stack | Links |
 |:---:|:---|:---|:---:|
-| 🌐 | **Personal Portfolio Website** | `HTML` `CSS` `JS` `Canvas` | [🔗 Live](https://bhavikportfolio.netlify.app) · [⭐ GitHub](https://github.com/bhavik-gitt/bhavikportfolio) |
+| 🌐 | **Personal Portfolio Website** | `HTML` `CSS` `JS` `Canvas` | [🔗 Live](bhavik-demo.vercel.app) · [⭐ GitHub](https://github.com/bhavik-gitt/bhavikportfolio) |
 | 🤖 | **AI Internship Recommendation Engine** | `AI/ML` `NLP` `Python` `Mobile-first` | [⭐ GitHub](https://github.com/bhavik-gitt/hackathon-project) |
 | 🌤️ | **Weather App** | `TypeScript` `v0.dev` `Vercel` | [⭐ GitHub](https://github.com/bhavik-gitt/Weather-App) |
 | 📰 | **NewsMonkey** | `React` `News API` `REST` | [🔗 Live](https://news-monkey-seven-gamma.vercel.app) · [⭐ GitHub](https://github.com/bhavik-gitt/NewsMonkey) |
@@ -363,7 +363,7 @@ open index.html
 <div align="center">
 
 > 💡 **Or just visit the live site:**  
-> **[https://bhavikportfolio.netlify.app](https://bhavikportfolio.netlify.app)**
+> **[bhavik-demo.vercel.app](bhavik-demo.vercel.app)**
 
 </div>
 
